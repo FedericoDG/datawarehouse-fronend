@@ -1,9 +1,10 @@
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const PublicRoutes = ({ children }) => {
-  const user = { logged: false };
+  const { auth } = useSelector((state) => state);
 
-  return user?.logged ? <Navigate to='/dashboard' /> : children;
+  return auth?.logged ? <Navigate to='/dashboard' /> : children;
 };
 
 export default PublicRoutes;

@@ -1,5 +1,12 @@
-import AppRoutes from './routes/AppRoutes';
+import { Provider } from 'react-redux';
 
-const App = () => <AppRoutes />;
+import AppRoutes from './routes/AppRoutes';
+import store from './app/store';
+
+const App = () => (
+  <Provider store={store}>
+    <AppRoutes />
+  </Provider>
+);
 
 export default App;
