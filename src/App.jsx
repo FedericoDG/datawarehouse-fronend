@@ -1,11 +1,5 @@
-import { Typography } from '@mui/material';
+import AppRoutes from './routes/AppRoutes';
 
-const App = () => (
-  <>
-    <Typography component='h1' variant='h6'>
-      DataWarehouse
-    </Typography>
-  </>
-);
+const App = () => <AppRoutes />;
 
 export default App;
