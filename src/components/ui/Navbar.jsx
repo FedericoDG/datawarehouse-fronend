@@ -1,24 +1,50 @@
+import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useState } from 'react';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { authLogout } from '../../app/authSlice';
+
+import { useTheme } from '@mui/material/styles';
+
+const pages = [
+  { name: 'Contactos', slug: '/dashboard/contactos' },
+  { name: 'Compañías', slug: '/dashboard/companias' },
+  { name: 'Regiones/Países', slug: '/dashboard/regiones' },
+  { name: 'Usuarios', slug: '/dashboard/usuarios' }
+];
+
+const styles = {
+  active: {
+    textDecoration: 'underline',
+    color: 'unset'
+  },
+  inactive: { color: 'unset', display: 'flex', textDecoration: 'none' }
+};
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const auth = useSelector((state) => state.auth);
+
+  const { user } = auth;
+
+  const dispatch = useDispatch();
+
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,29 +61,36 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
+  const stringAvatar = (name) => {
+    return {
+      sx: {
+        color: theme.palette.primary.main,
+        bgcolor: theme.palette.primary.contrastText
+      },
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+    };
+  };
+
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant='h6'
-            noWrap
-            component='a'
-            href='/'
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            LOGO
-          </Typography>
-
+          <MapsHomeWorkIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Link to='/dashboard/contactos' style={{ textDecoration: 'none', color: 'unset' }}>
+            <Typography
+              variant='h5'
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
+            >
+              DATAWAREHOUSE
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size='large'
@@ -88,43 +121,50 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
+                <MenuItem key={page.slug} onClick={handleCloseNavMenu}>
+                  <NavLink to={page.slug} style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                    <Typography textAlign='center'>{page.name}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant='h5'
-            noWrap
-            component='a'
-            href=''
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            LOGO
-          </Typography>
+          <Box sx={{ flexGrow: 1, alignItems: 'center', display: { xs: 'flex', md: 'none' } }}>
+            <MapsHomeWorkIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Link to='/dashboard' style={{ textDecoration: 'none', color: 'unset' }}>
+              <Typography
+                variant='h5'
+                noWrap
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none'
+                }}
+              >
+                DATAWAREHOUSE
+              </Typography>
+            </Link>
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                {page}
-              </Button>
+              <MenuItem key={page.slug} onClick={handleCloseNavMenu}>
+                <NavLink to={page.slug} style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                  <Button key={page.slug} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                    {page.name}
+                  </Button>
+                </NavLink>
+              </MenuItem>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title='Open settings'>
+            <Tooltip title='Abrir menú'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+                <Avatar {...stringAvatar(`${user.name} ${user.lastname}`)} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -143,11 +183,12 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign='center'>Perfil</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => dispatch(authLogout())}>
+                <Typography textAlign='center'>Salir</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
