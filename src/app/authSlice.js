@@ -1,26 +1,45 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import api from '../services/api';
+import auth from '../services/auth';
 import localStorage from '../utils/localStorage';
 
-const initialState = {
-  logged: localStorage.read('logged') || false,
-  loading: localStorage.read('loading') || false,
-  user: localStorage.read('user') || {},
-  token: localStorage.read('token') || ''
+const initialState = () => {
+  if (!localStorage.read('token')) {
+    return {
+      logged: false,
+      loading: false,
+      user: null,
+      token: null
+    };
+  } else {
+    return {
+      logged: true,
+      loading: false,
+      user: localStorage.read('user'),
+      token: localStorage.read('token')
+    };
+  }
 };
 
 export const authLogin = createAsyncThunk('[auth]/login', async ({ email, password }, thunkAPI) => {
-  return await api.login(email, password);
+  return await auth.login(email, password);
 });
+
+export const authLogout = () => (dispatch) => {
+  auth.logout();
+  dispatch(logout());
+};
 
 export const authSlice = createSlice({
   name: '[auth]',
-  initialState,
+  initialState: initialState(),
   reducers: {
     logout: (state) => ({
       ...state,
-      initialState
+      logged: false,
+      loading: false,
+      user: null,
+      token: null
     })
   },
   extraReducers: {
@@ -42,6 +61,6 @@ export const authSlice = createSlice({
   }
 });
 
-export const { logout } = authSlice.actions;
+const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
