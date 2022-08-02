@@ -1,3 +1,5 @@
-const Dashboard = () => <div>Dashboard</div>;
+import Layout from '../components/ui/Layout';
+
+const Dashboard = () => <Layout>Dashboard</Layout>;
 
 export default Dashboard;
