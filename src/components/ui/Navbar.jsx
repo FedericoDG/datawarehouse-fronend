@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -16,8 +17,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import { authLogout } from '../../app/authSlice';
-
-import { useTheme } from '@mui/material/styles';
 
 const pages = [
   { name: 'Contactos', slug: '/dashboard/contactos' },
