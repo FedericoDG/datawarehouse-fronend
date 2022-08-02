@@ -22,17 +22,8 @@ import { useTheme } from '@mui/material/styles';
 const pages = [
   { name: 'Contactos', slug: '/dashboard/contactos' },
   { name: 'Compañías', slug: '/dashboard/companias' },
-  { name: 'Regiones/Países', slug: '/dashboard/regiones' },
-  { name: 'Usuarios', slug: '/dashboard/usuarios' }
+  { name: 'Regiones/Países', slug: '/dashboard/regiones' }
 ];
-
-const styles = {
-  active: {
-    textDecoration: 'underline',
-    color: 'unset'
-  },
-  inactive: { color: 'unset', display: 'flex', textDecoration: 'none' }
-};
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -45,6 +36,17 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const theme = useTheme();
+
+  const styles = {
+    active: {
+      bgcolor: theme.palette.primary.contrastText,
+      color: theme.palette.primary.main,
+      textDecorationColor: theme.palette.secondary.main,
+      textDecorationThickness: '3px',
+      textUnderlineOffset: '0.3rem'
+    },
+    inactive: { color: 'unset', textDecoration: 'none' }
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -121,12 +123,19 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.slug} onClick={handleCloseNavMenu}>
-                  <NavLink to={page.slug} style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                <NavLink key={page.slug} to={page.slug} style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign='center'>{page.name}</Typography>
-                  </NavLink>
-                </MenuItem>
+                  </MenuItem>
+                </NavLink>
               ))}
+              {user.role === 'ADMIN' && (
+                <NavLink to='/dashboard/usuarios' style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign='center'>Usuarios</Typography>
+                  </MenuItem>
+                </NavLink>
+              )}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, alignItems: 'center', display: { xs: 'flex', md: 'none' } }}>
@@ -152,14 +161,23 @@ const Navbar = () => {
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <MenuItem key={page.slug} onClick={handleCloseNavMenu}>
-                <NavLink to={page.slug} style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
-                  <Button key={page.slug} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              <NavLink key={page.slug} to={page.slug} style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                     {page.name}
                   </Button>
-                </NavLink>
-              </MenuItem>
+                </MenuItem>
+              </NavLink>
             ))}
+            {user.role === 'ADMIN' && (
+              <NavLink to='/dashboard/usuarios' style={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                    Usuarios
+                  </Button>
+                </MenuItem>
+              </NavLink>
+            )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Abrir menú'>
