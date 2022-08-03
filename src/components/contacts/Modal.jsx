@@ -1,9 +1,10 @@
 import { Backdrop, Box, Button, Fade, MenuItem, Modal, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import LinearProgress from '@mui/material/LinearProgress';
+
 import { useGetCitiesQuery } from '../../app/citiesApi';
 import { useGetCompaniesQuery } from '../../app/companiesApi';
-import { useGetCountriesQuery } from '../../app/countriesApi';
-import { useGetRegionsQuery } from '../../app/regionsApi';
 import { isEmail } from '../../utils/validations';
 
 const style = {
@@ -14,7 +15,8 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  minWidth: 1366,
+  minWidth: 1300,
+  minHeight: 460,
   borderRadius: 1
 };
 
@@ -25,10 +27,11 @@ const preferences = [
 ];
 
 const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => {
-  let { data: companies, isLoading: isLoadingCompanies } = useGetCompaniesQuery();
-  let { data: regions, isLoading: isLoadingRegions } = useGetRegionsQuery();
-  let { data: countries, isLoading: isLoadingCountries } = useGetCountriesQuery();
+  const [lastname, setLastname] = useState(activeData.lastname.at(0));
+  const [name, setName] = useState(activeData.name.at(0));
+
   let { data: cities, isLoading: isLoadingCities } = useGetCitiesQuery();
+  let { data: companies, isLoading: isLoadingCompanies } = useGetCompaniesQuery();
 
   const {
     handleSubmit,
@@ -36,22 +39,24 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
     register
   } = useForm({ defaultValues: { ...activeData } });
 
-  if (isLoadingCompanies || isLoadingRegions || isLoadingCountries || isLoadingCities) {
+  if (isLoadingCompanies || isLoadingCities) {
     return (
       <Modal
-        closeAfterTransition
+        aria-describedby='transition-modal-description'
+        aria-labelledby='transition-modal-title'
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500
         }}
-        aria-describedby='transition-modal-description'
-        aria-labelledby='transition-modal-title'
-        open={open}
+        closeAfterTransition
         onClose={handleClose}
+        open={open}
       >
         <Fade in={open}>
           <Box sx={style} component={Paper}>
-            Loading...
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box>
           </Box>
         </Fade>
       </Modal>
@@ -59,15 +64,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
   }
 
   companies = companies.companies;
-  regions = regions.regions;
-  countries = countries.countries;
   cities = cities.cities;
-
-  console.log({ activeData });
-  console.log({ companies });
-  console.log({ regions });
-  console.log({ countries });
-  console.log({ cities });
 
   const onSubmit = (data) => {
     handleEditContact(data);
@@ -89,35 +86,65 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
       <Fade in={open}>
         <Box sx={style} component={Paper}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Typography align='center' color='initial' fontWeight='light' variant='h6'>
+            {/* <Typography align='center' color='initial' fontWeight='light' variant='h6'>
               Que gusto tenerte aquí
-            </Typography>
-            <Stack p={1} spacing={1} direction='row'>
+            </Typography> */}
+            <Stack p={1} spacing={1} direction='row' flex alignItems='center'>
+              <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                sx={{
+                  minWidth: 120,
+                  minHeight: 120,
+                  backgroundColor: 'primary.main',
+                  borderRadius: '50%',
+                  zIndex: 99,
+                  textTransform: 'uppercase'
+                }}
+              >
+                <Typography align='center' color='white' fontWeight='bold' variant='h2' textTransform='upercase'>
+                  {lastname}
+                  {name}
+                </Typography>
+              </Box>
               <TextField
-                fullWidth
-                label='Apellido'
-                inputProps={{ tabIndex: '1' }}
                 autoFocus
+                fullWidth
+                inputProps={{ tabIndex: '1' }}
+                label='Apellido'
+                size='small'
+                variant='filled'
                 {...register('lastname', {
-                  required: 'El apellido es obligatorio'
+                  required: 'El apellido es obligatorio',
+                  onChange: (e) => {
+                    setLastname(e.target.value.at(0));
+                  }
                 })}
                 error={!!errors.lastname}
                 helperText={errors.lastname?.message}
               />
               <TextField
                 fullWidth
-                label='Nombre'
                 inputProps={{ tabIndex: '2' }}
+                label='Nombre'
+                size='small'
+                variant='filled'
+                onChange={(e) => setName(e.target.value.at(0))}
                 {...register('name', {
-                  required: 'El nombre es obligatorio'
+                  required: 'El nombre es obligatorio',
+                  onChange: (e) => {
+                    setName(e.target.value.at(0));
+                  }
                 })}
                 error={!!errors.name}
                 helperText={errors.name?.message}
               />
               <TextField
                 fullWidth
-                label='Email'
                 inputProps={{ tabIndex: '3' }}
+                label='Email'
+                variant='standard'
                 {...register('email', {
                   required: 'El email es obligatorio',
                   validate: isEmail
@@ -128,11 +155,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
             </Stack>
             <Stack p={1} spacing={1} direction='row'>
               <TextField
+                defaultValue={activeData.id_city}
                 fullWidth
+                inputProps={{ tabIndex: '4' }}
                 label='Ciudad'
                 select
-                inputProps={{ tabIndex: '4' }}
-                defaultValue={activeData.id_city}
+                variant='standard'
                 {...register('id_city', {
                   required: 'La ciudad es obligatoria'
                 })}
@@ -146,11 +174,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
                 ))}
               </TextField>
               <TextField
+                defaultValue={activeData.id_company}
                 fullWidth
+                inputProps={{ tabIndex: '4' }}
                 label='Compañía'
                 select
-                inputProps={{ tabIndex: '4' }}
-                defaultValue={activeData.id_company}
+                variant='standard'
                 {...register('id_city', {
                   required: 'La compañia es obligatoria'
                 })}
@@ -165,8 +194,9 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
               </TextField>
               <TextField
                 fullWidth
-                label='Cargo'
                 inputProps={{ tabIndex: '6' }}
+                label='Cargo'
+                variant='standard'
                 {...register('position', {
                   required: 'El cargo es obligatorio'
                 })}
@@ -175,27 +205,28 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
               />
               <TextField
                 fullWidth
-                label='Dirección'
                 inputProps={{ tabIndex: '7' }}
+                label='Dirección'
+                variant='standard'
                 {...register('address', {
                   required: 'La dirección es obligatoria'
                 })}
                 error={!!errors.address}
                 helperText={errors.address?.message}
               />
-              <Box sx={{ minWidth: 250 }}>
+              <Box sx={{ minWidth: 238 }}>
                 <Typography gutterBottom textAlign='center'>
                   Interés
                 </Typography>
                 <Slider
                   color='secondary'
                   defaultValue={activeData.interest}
-                  valueLabelDisplay='auto'
-                  step={25}
                   marks
-                  min={0}
                   max={100}
+                  min={0}
+                  step={25}
                   tabIndex={8}
+                  valueLabelDisplay='auto'
                   {...register('interest')}
                 />
               </Box>
@@ -203,40 +234,45 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
             <Stack p={1} spacing={1} direction='row'>
               <TextField
                 fullWidth
-                label='Teléfono'
                 inputProps={{ tabIndex: '9' }}
+                label='Teléfono'
+                variant='standard'
                 {...register('phone')}
                 error={!!errors.phone}
                 helperText={errors.phone?.message}
               />
               <TextField
                 fullWidth
-                label='LinkedIn'
                 inputProps={{ tabIndex: '11' }}
+                label='LinkedIn'
+                variant='standard'
                 {...register('linkedin')}
                 error={!!errors.linkedin}
                 helperText={errors.linkedin?.message}
               />
               <TextField
-                fullWidth
-                label='Facebook'
-                inputProps={{ tabIndex: '13' }}
                 {...register('facebook')}
+                fullWidth
+                inputProps={{ tabIndex: '13' }}
+                label='Facebook'
+                variant='standard'
                 error={!!errors.facebook}
                 helperText={errors.facebook?.message}
               />
               <TextField
                 fullWidth
-                label='Twitter'
                 inputProps={{ tabIndex: '15' }}
+                label='Twitter'
+                variant='standard'
                 {...register('twitter')}
                 error={!!errors.twitter}
                 helperText={errors.twitter?.message}
               />
               <TextField
                 fullWidth
-                label='Instagram'
                 inputProps={{ tabIndex: '17' }}
+                label='Instagram'
+                variant='standard'
                 {...register('instagram')}
                 error={!!errors.instagram}
                 helperText={errors.instagram?.message}
@@ -244,11 +280,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
             </Stack>
             <Stack p={1} spacing={1} direction='row'>
               <TextField
+                defaultValue={activeData.preference_phone}
                 fullWidth
+                inputProps={{ tabIndex: '10' }}
                 label='Preferencia Teléfono'
                 select
-                inputProps={{ tabIndex: '10' }}
-                defaultValue={activeData.preference_phone || ''}
+                variant='standard'
                 {...register('preference_phone')}
                 error={!!errors.preference_phone}
                 helperText={errors.preference_phone?.message}
@@ -260,11 +297,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
                 ))}
               </TextField>
               <TextField
+                defaultValue={activeData.preference_linkedin}
                 fullWidth
+                inputProps={{ tabIndex: '12' }}
                 label='Preferencia LinkedIn'
                 select
-                inputProps={{ tabIndex: '12' }}
-                defaultValue={activeData.preference_linkedin || ''}
+                variant='standard'
                 {...register('preference_linkedin')}
                 error={!!errors.preference_linkedin}
                 helperText={errors.preference_linkedin?.message}
@@ -276,11 +314,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
                 ))}
               </TextField>
               <TextField
+                defaultValue={activeData.preference_facebook}
                 fullWidth
+                inputProps={{ tabIndex: '14' }}
                 label='Preferencia Facebook'
                 select
-                inputProps={{ tabIndex: '14' }}
-                defaultValue={activeData.preference_facebook || ''}
+                variant='standard'
                 {...register('preference_facebook')}
                 error={!!errors.preference_facebook}
                 helperText={errors.preference_facebook?.message}
@@ -292,11 +331,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
                 ))}
               </TextField>
               <TextField
+                defaultValue={activeData.preference_twitter}
                 fullWidth
+                inputProps={{ tabIndex: '16' }}
                 label='Preferencia Twitter'
                 select
-                inputProps={{ tabIndex: '16' }}
-                defaultValue={activeData.preference_twitter || ''}
+                variant='standard'
                 {...register('preference_twitter')}
                 error={!!errors.preference_twitter}
                 helperText={errors.preference_twitter?.message}
@@ -308,11 +348,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
                 ))}
               </TextField>
               <TextField
+                defaultValue={activeData.preference_instagram}
                 fullWidth
+                inputProps={{ tabIndex: '18' }}
                 label='Preferencia Instagram'
                 select
-                inputProps={{ tabIndex: '16' }}
-                defaultValue={activeData.preference_instagram || ''}
+                variant='standard'
                 {...register('preference_instagram')}
                 error={!!errors.preference_instagram}
                 helperText={errors.preference_instagram?.message}

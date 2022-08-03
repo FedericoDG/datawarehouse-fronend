@@ -7,7 +7,9 @@ import styled from '@emotion/styled';
 import './styles.css';
 
 const StyledDataGrid = styled(DataGrid)`
+  &.MuiDataGrid-root .MuiDataGrid-columnHeader,
   &.MuiDataGrid-root .MuiDataGrid-columnHeader:focus,
+  &.MuiDataGrid-root .MuiDataGrid-cell,
   &.MuiDataGrid-root .MuiDataGrid-cell:focus {
     outline: none;
   }
@@ -21,9 +23,8 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
       width: 200,
       valueGetter: (params) => ` ${params.row.lastname || ''} ${params.row.name || ''}`
     },
-    { field: 'company_name', headerName: 'Compañía', width: 250 },
+    { field: 'company_name', headerName: 'Compañía', width: 300 },
     { field: 'position', headerName: 'Cargo', width: 150 },
-    { field: 'email', headerName: 'Correo', width: 300 },
     {
       field: 'interest',
       headerName: 'Interés',
@@ -40,7 +41,6 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
       field: 'chanel',
       headerName: 'Canal Favorito',
       align: 'center',
-      headerAlign: 'center',
       width: 300,
       flex: 1,
       sortable: false,
@@ -79,7 +79,7 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
       headerName: 'Acciones',
       align: 'center',
       headerAlign: 'center',
-      width: 100,
+      width: 125,
       sortable: false,
       renderCell: (obj) => (
         <>
