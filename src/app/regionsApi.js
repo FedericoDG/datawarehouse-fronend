@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const regions = createApi({
+export const regionsApi = createApi({
   reducerPath: 'regions',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3005/v1',
@@ -49,4 +49,4 @@ export const regions = createApi({
   })
 });
 
-export const { useGetRegionsQuery, useGetRegionQuery, useAddRegionMutation, useEditRegionMutation, useDeleteRegionMutation } = regions;
+export const { useGetRegionsQuery, useGetRegionQuery, useAddRegionMutation, useEditRegionMutation, useDeleteRegionMutation } = regionsApi;
