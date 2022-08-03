@@ -1,7 +1,6 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
 
 import { authLogin } from '../../app/authSlice';
 import { isEmail } from '../../utils/validations';
@@ -9,8 +8,6 @@ import { isEmail } from '../../utils/validations';
 import LogoCompleto from '../../assets/logo-completo.png';
 
 const LoginForm = () => {
-  const [showErrors, setShowErrors] = useState(false);
-
   const { auth } = useSelector((state) => state);
 
   const { loading } = auth;
@@ -23,8 +20,8 @@ const LoginForm = () => {
     register
   } = useForm();
 
-  const onLogin = async (data) => {
-    await dispatch(authLogin(data));
+  const onLogin = (data) => {
+    dispatch(authLogin(data));
   };
 
   return (
@@ -61,7 +58,7 @@ const LoginForm = () => {
             error={!!errors.password}
             helperText={errors.password?.message}
           />
-          <Button sx={{ paddingY: '12px' }} type='submit' variant='contained'>
+          <Button active={!loading} sx={{ paddingY: '12px' }} type='submit' variant='contained'>
             Ingresar
           </Button>
         </Stack>
