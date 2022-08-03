@@ -58,7 +58,7 @@ const LoginForm = () => {
             error={!!errors.password}
             helperText={errors.password?.message}
           />
-          <Button active={!loading} sx={{ paddingY: '12px' }} type='submit' variant='contained'>
+          <Button disabled={loading} sx={{ paddingY: '12px' }} type='submit' variant='contained'>
             Ingresar
           </Button>
         </Stack>
