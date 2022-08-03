@@ -32,7 +32,7 @@ export const companiesApi = createApi({
       invalidatesTags: ['companies']
     }),
     editCompany: builder.mutation({
-      query: (id_company, ...rest) => ({
+      query: ({ id_company, ...rest }) => ({
         url: `/companies/${id_company}`,
         method: 'PUT',
         body: rest

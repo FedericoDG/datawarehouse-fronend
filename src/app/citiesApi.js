@@ -32,7 +32,7 @@ export const citiesApi = createApi({
       invalidatesTags: ['cities']
     }),
     editCity: builder.mutation({
-      query: (id_city, ...rest) => ({
+      query: ({ id_city, ...rest }) => ({
         url: `/cities/${id_city}`,
         method: 'PUT',
         body: rest

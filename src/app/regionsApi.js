@@ -32,7 +32,7 @@ export const regionsApi = createApi({
       invalidatesTags: ['regions']
     }),
     editRegion: builder.mutation({
-      query: (id_region, ...rest) => ({
+      query: ({ id_region, ...rest }) => ({
         url: `/regions/${id_region}`,
         method: 'PUT',
         body: rest

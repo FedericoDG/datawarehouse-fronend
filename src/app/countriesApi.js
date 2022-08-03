@@ -32,7 +32,7 @@ export const countriesApi = createApi({
       invalidatesTags: ['countries']
     }),
     editCountry: builder.mutation({
-      query: (id_country, ...rest) => ({
+      query: ({ id_country, ...rest }) => ({
         url: `/countries/${id_country}`,
         method: 'PUT',
         body: rest
