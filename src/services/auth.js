@@ -1,5 +1,7 @@
 import { postRequest } from './httpRequest';
 import localStorage from '../utils/localStorage';
+import { errorToast } from '../utils/errorToast';
+import { successToast } from '../utils/successToast';
 
 const login = async (email, password) => {
   try {
@@ -10,8 +12,11 @@ const login = async (email, password) => {
     localStorage.write('user', data.user);
     localStorage.write('token', data.token);
 
+    successToast(`Hola ${data.user.name} 🤓`);
+
     return data;
   } catch (error) {
+    errorToast(error.response.data.message + ' 😪');
     throw new Error(error);
   }
 };
