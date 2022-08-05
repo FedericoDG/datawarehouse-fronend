@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 import AppRoutes from './routes/AppRoutes';
-import Footer from './components/ui/Footer';
 import lightTheme from './themes/light-theme';
 import store from './app/store';
 
@@ -16,7 +15,6 @@ const App = () => (
       <CssBaseline />
       <ConfirmProvider>
         <AppRoutes />
-        <Footer />
       </ConfirmProvider>
       <ToastContainer autoClose={2000} />
     </ThemeProvider>

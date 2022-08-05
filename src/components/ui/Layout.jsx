@@ -1,4 +1,5 @@
 import { Container } from '@mui/material';
+import Footer from './Footer';
 import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
@@ -8,6 +9,7 @@ const Layout = ({ children }) => {
       <Container sx={{ paddingTop: 1 }} maxWidth='xl'>
         {children}
       </Container>
+      <Footer />
     </>
   );
 };

@@ -12,7 +12,7 @@ const Error404 = ({ height = 657 }) => (
           ¡Parece que te haz perdido!
         </Typography>
         <Typography variant='body' color='initial' textAlign='center'>
-          Intententa usar el menú de arriba. No es muy complicado, ¡tu puedes!.
+          Intententa usar el menú de arriba. No es muy complicado, ¡tu puedes!
         </Typography>
       </Box>
     </Box>
