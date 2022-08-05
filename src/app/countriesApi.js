@@ -20,7 +20,7 @@ export const countriesApi = createApi({
       providesTags: ['countries']
     }),
     getCountry: builder.query({
-      query: () => '/countries',
+      query: (id) => `/countries/${id}`,
       providesTags: ['countries']
     }),
     addCountry: builder.mutation({

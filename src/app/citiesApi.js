@@ -20,7 +20,7 @@ export const citiesApi = createApi({
       providesTags: ['cities']
     }),
     getCity: builder.query({
-      query: () => '/cities',
+      query: (id) => `/cities/${id}`,
       providesTags: ['cities']
     }),
     addCity: builder.mutation({

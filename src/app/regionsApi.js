@@ -20,7 +20,7 @@ export const regionsApi = createApi({
       providesTags: ['regions']
     }),
     getRegion: builder.query({
-      query: () => '/regions',
+      query: (id) => `/regions/${id}`,
       providesTags: ['regions']
     }),
     addRegion: builder.mutation({

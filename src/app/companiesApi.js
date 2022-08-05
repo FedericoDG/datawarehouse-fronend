@@ -20,7 +20,7 @@ export const companiesApi = createApi({
       providesTags: ['companies']
     }),
     getCompany: builder.query({
-      query: () => '/companies',
+      query: (id) => `/companies/${id}`,
       providesTags: ['companies']
     }),
     addCompany: builder.mutation({
