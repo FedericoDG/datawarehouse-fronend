@@ -127,14 +127,14 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
   ];
 
   return (
-    <div style={{ height: 450, width: '100%' }}>
+    <div style={{ height: 527, width: '100%' }}>
       <StyledDataGrid
         columns={columns}
         disableSelectionOnClick
         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-        pageSize={6}
+        pageSize={8}
         rows={rows}
-        rowsPerPageOptions={[6]}
+        rowsPerPageOptions={[8]}
         sx={{ fontFamily: 'Roboto Mono, monospace' }}
       />
     </div>
