@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import styled from '@emotion/styled';
 
 import './styles.css';
+import { notification } from '../../utils/notification';
 
 const StyledDataGrid = styled(DataGrid)`
   &.MuiDataGrid-root .MuiDataGrid-columnHeader,
@@ -115,6 +116,7 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
               })
                 .then(() => {
                   handleDeleteContact(obj.row.id);
+                  notification('success', 'Contacto eliminado con éxito');
                 })
                 .catch(() => {});
             }}

@@ -1,10 +1,12 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 
-import Banner from '../../assets/bg-login.jpg';
+import './LoginBanner.css';
+import Banner from '../../assets/bg-login.webp';
 
 const LoginBanner = () => (
   <Box
+    className='image'
     component='img'
     src={Banner}
     sx={{

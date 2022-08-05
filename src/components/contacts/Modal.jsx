@@ -1,24 +1,12 @@
-import {
-  Backdrop,
-  Box,
-  Button,
-  CircularProgress,
-  Fade,
-  Grid,
-  MenuItem,
-  Modal,
-  Paper,
-  Slider,
-  Stack,
-  TextField,
-  Typography
-} from '@mui/material';
+import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
+import { isEmail } from '../../utils/validations';
+import { notification } from '../../utils/notification';
 import { useGetCitiesQuery } from '../../app/citiesApi';
 import { useGetCompaniesQuery } from '../../app/companiesApi';
-import { isEmail } from '../../utils/validations';
+import Spinner from '../ui/Spinner';
 
 const style = {
   position: 'absolute',
@@ -67,9 +55,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
       >
         <Fade in={open}>
           <Box sx={style} component={Paper}>
-            <Box sx={{ width: '100%' }}>
-              <CircularProgress />
-            </Box>
+            <Spinner height={460} />
           </Box>
         </Fade>
       </Modal>
@@ -77,13 +63,17 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
   }
 
   const onSubmit = (data) => {
+    let message;
     if (activeData.id) {
       handleEditContact(data);
+      message = 'Contacto editado con éxito';
     } else {
-      console.log('CREATE');
       handleAddContact(data);
+      message = 'Contacto creado con éxito';
     }
     handleClose();
+
+    notification('success', message);
   };
 
   return (
@@ -385,31 +375,16 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
             </Stack>
             <Grid container spacing={2} justifyContent='flex-end' mt={2}>
               <Grid item>
+                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={20}>
+                  Cancelar
+                </Button>
+              </Grid>
+              <Grid item>
                 <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={19}>
                   Guardar
                 </Button>
               </Grid>
-              <Grid item>
-                <Button
-                  color='error'
-                  sx={{ minWidth: 250, padding: 1 }}
-                  type='reset'
-                  variant='contained'
-                  onClick={handleClose}
-                  tabIndex={20}
-                >
-                  Cancelar
-                </Button>
-              </Grid>
             </Grid>
-            {/*  <Stack direction='row' p={1} spacing={1}>
-              <Button color='primary' sx={{ paddingY: '12px' }} type='submit' variant='contained' tabIndex={19}>
-                Guardar
-              </Button>
-              <Button color='error' sx={{ paddingY: '12px' }} type='reset' variant='contained' onClick={handleClose} tabIndex={20}>
-                Cancelar
-              </Button>
-            </Stack> */}
           </form>
         </Box>
       </Fade>

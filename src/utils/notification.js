@@ -1,8 +1,7 @@
 import { toast } from 'react-toastify';
 
-export const successToast = (message) => {
-  console.log(message);
-  toast.success(message, {
+export const notification = (status, message) => {
+  toast[status](message, {
     position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,

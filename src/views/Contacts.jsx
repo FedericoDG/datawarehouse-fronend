@@ -7,6 +7,7 @@ import ModalContacts from '../components/contacts/Modal';
 import Search from '../components/contacts/Seach';
 import Table from '../components/contacts/Table';
 import Buttons from '../components/contacts/Buttons';
+import Spinner from '../components/ui/Spinner';
 
 const Contacts = () => {
   const defaultContact = useMemo(
@@ -87,7 +88,7 @@ const Contacts = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner height={786} />;
   }
 
   return (
