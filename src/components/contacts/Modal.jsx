@@ -1,7 +1,20 @@
-import { Backdrop, Box, Button, Fade, MenuItem, Modal, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
+import {
+  Backdrop,
+  Box,
+  Button,
+  CircularProgress,
+  Fade,
+  Grid,
+  MenuItem,
+  Modal,
+  Paper,
+  Slider,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
 
 import { useGetCitiesQuery } from '../../app/citiesApi';
 import { useGetCompaniesQuery } from '../../app/companiesApi';
@@ -26,12 +39,12 @@ const preferences = [
   { id_preference: 3, name: 'no molestar' }
 ];
 
-const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => {
+const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handleAddContact }) => {
   const [lastname, setLastname] = useState(activeData.lastname.at(0));
   const [name, setName] = useState(activeData.name.at(0));
 
-  let { data: cities, isLoading: isLoadingCities } = useGetCitiesQuery();
-  let { data: companies, isLoading: isLoadingCompanies } = useGetCompaniesQuery();
+  const { data: cities, isLoading: isLoadingCities } = useGetCitiesQuery();
+  const { data: companies, isLoading: isLoadingCompanies } = useGetCompaniesQuery();
 
   const {
     handleSubmit,
@@ -55,7 +68,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
         <Fade in={open}>
           <Box sx={style} component={Paper}>
             <Box sx={{ width: '100%' }}>
-              <LinearProgress />
+              <CircularProgress />
             </Box>
           </Box>
         </Fade>
@@ -63,11 +76,13 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
     );
   }
 
-  companies = companies.companies;
-  cities = cities.cities;
-
   const onSubmit = (data) => {
-    handleEditContact(data);
+    if (activeData.id) {
+      handleEditContact(data);
+    } else {
+      console.log('CREATE');
+      handleAddContact(data);
+    }
     handleClose();
   };
 
@@ -86,24 +101,27 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
       <Fade in={open}>
         <Box sx={style} component={Paper}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <Typography align='center' color='initial' fontWeight='light' variant='h6'>
-              Que gusto tenerte aquí
-            </Typography> */}
+            <Typography align='center' variant='h6' textTransform='uppercase' fontWeight={600}>
+              {activeData.id ? 'Editar Contacto' : 'Agregar Contacto'}
+            </Typography>
             <Stack p={1} spacing={1} direction='row' flex alignItems='center'>
               <Box
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
                 sx={{
-                  minWidth: 120,
-                  minHeight: 120,
-                  backgroundColor: 'primary.main',
+                  backgroundColor: 'primary.dark',
+                  borderWidth: 4,
+                  borderStyle: 'solid',
+                  borderColor: 'primary.light',
                   borderRadius: '50%',
-                  zIndex: 99,
-                  textTransform: 'uppercase'
+                  minHeight: 100,
+                  minWidth: 100,
+                  textTransform: 'uppercase',
+                  zIndex: 99
                 }}
               >
-                <Typography align='center' color='white' fontWeight='bold' variant='h2' textTransform='upercase'>
+                <Typography align='center' color='primary.contrastText' fontWeight='bold' variant='h3' textTransform='upercase'>
                   {lastname}
                   {name}
                 </Typography>
@@ -176,11 +194,11 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
               <TextField
                 defaultValue={activeData.id_company}
                 fullWidth
-                inputProps={{ tabIndex: '4' }}
+                inputProps={{ tabIndex: '5' }}
                 label='Compañía'
                 select
                 variant='standard'
-                {...register('id_city', {
+                {...register('id_company', {
                   required: 'La compañia es obligatoria'
                 })}
                 error={!!errors.id_company}
@@ -365,14 +383,33 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact }) => 
                 ))}
               </TextField>
             </Stack>
-            <Stack direction='row' p={1} spacing={1}>
+            <Grid container spacing={2} justifyContent='flex-end' mt={2}>
+              <Grid item>
+                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={19}>
+                  Guardar
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  color='error'
+                  sx={{ minWidth: 250, padding: 1 }}
+                  type='reset'
+                  variant='contained'
+                  onClick={handleClose}
+                  tabIndex={20}
+                >
+                  Cancelar
+                </Button>
+              </Grid>
+            </Grid>
+            {/*  <Stack direction='row' p={1} spacing={1}>
               <Button color='primary' sx={{ paddingY: '12px' }} type='submit' variant='contained' tabIndex={19}>
                 Guardar
               </Button>
               <Button color='error' sx={{ paddingY: '12px' }} type='reset' variant='contained' onClick={handleClose} tabIndex={20}>
                 Cancelar
               </Button>
-            </Stack>
+            </Stack> */}
           </form>
         </Box>
       </Fade>
