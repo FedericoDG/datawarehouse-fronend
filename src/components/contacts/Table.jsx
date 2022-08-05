@@ -1,5 +1,6 @@
 import { Button, Chip, Grid } from '@mui/material';
 import { DataGrid, esES } from '@mui/x-data-grid';
+import { useConfirm } from 'material-ui-confirm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import styled from '@emotion/styled';
@@ -16,6 +17,8 @@ const StyledDataGrid = styled(DataGrid)`
 `;
 
 const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
+  const confirm = useConfirm();
+
   const columns = [
     {
       field: 'fullname',
@@ -102,7 +105,19 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
             sx={{ minWidth: 0 }}
             type='submit'
             variant='text'
-            onClick={() => handleDeleteContact(obj.row.id)}
+            onClick={() => {
+              confirm({
+                title: '¿Quiere eliminar este contacto?',
+                content: `Contacto: ${obj.row.lastname}, ${obj.row.name}`,
+                confirmationText: 'Eliminar',
+                cancellationText: 'Cancelar',
+                confirmationButtonProps: { variant: 'contained', color: 'error', autoFocus: true }
+              })
+                .then(() => {
+                  handleDeleteContact(obj.row.id);
+                })
+                .catch(() => {});
+            }}
           >
             <DeleteIcon />
           </Button>

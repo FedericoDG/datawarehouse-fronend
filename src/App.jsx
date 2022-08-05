@@ -1,3 +1,4 @@
+import { ConfirmProvider } from 'material-ui-confirm';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -13,8 +14,10 @@ const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
-      <AppRoutes />
-      <Footer />
+      <ConfirmProvider>
+        <AppRoutes />
+        <Footer />
+      </ConfirmProvider>
       <ToastContainer autoClose={2000} />
     </ThemeProvider>
   </Provider>
