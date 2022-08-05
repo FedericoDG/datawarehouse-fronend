@@ -1,4 +1,5 @@
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import Error404 from '../views/404';
 import Company from '../views/Company';
 
 import Contacts from '../views/Contacts';
@@ -11,7 +12,7 @@ const Private = () => (
     <Route element={<Company />} path='/companias' />
     <Route element={<Regions />} path='/regiones' />
     <Route element={<Users />} path='/usuarios' />
-    <Route path='/*' element={<Navigate to='/dashboard/contactos' replace />} />
+    <Route element={<Error404 />} path='/*' />
   </Routes>
 );
 
