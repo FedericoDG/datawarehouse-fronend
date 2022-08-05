@@ -1,12 +1,10 @@
 import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 
 import { isEmail } from '../../utils/validations';
-import { notification } from '../../utils/notification';
-import { useGetCitiesQuery } from '../../app/citiesApi';
-import { useGetCompaniesQuery } from '../../app/companiesApi';
+
 import Spinner from '../ui/Spinner';
+import preferences from '../../constants/preferencesArray';
+import useModalContacts from '../../hooks/useMoidalContacts';
 
 const style = {
   position: 'absolute',
@@ -21,37 +19,21 @@ const style = {
   borderRadius: 1
 };
 
-const preferences = [
-  { id_preference: 1, name: 'sin preferencia' },
-  { id_preference: 2, name: 'canal favorito' },
-  { id_preference: 3, name: 'no molestar' }
-];
-
 const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handleAddContact }) => {
-  const [lastname, setLastname] = useState(activeData.lastname.at(0));
-  const [name, setName] = useState(activeData.name.at(0));
-
-  const { data: cities, isLoading: isLoadingCities } = useGetCitiesQuery();
-  const { data: companies, isLoading: isLoadingCompanies } = useGetCompaniesQuery();
-
   const {
+    lastname,
+    setLastname,
+    name,
+    setName,
+    cities,
+    isLoadingCities,
+    companies,
+    isLoadingCompanies,
     handleSubmit,
-    formState: { errors },
-    register
-  } = useForm({ defaultValues: { ...activeData } });
-
-  const onSubmit = (data) => {
-    let message;
-    if (activeData.id) {
-      handleEditContact(data);
-      message = 'Contacto editado con éxito';
-    } else {
-      handleAddContact(data);
-      message = 'Contacto creado con éxito';
-    }
-    handleClose();
-    notification('success', message);
-  };
+    errors,
+    register,
+    onSubmit
+  } = useModalContacts({ activeData, handleEditContact, handleAddContact, handleClose });
 
   if (isLoadingCompanies || isLoadingCities) {
     return (
