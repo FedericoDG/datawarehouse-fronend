@@ -5,24 +5,27 @@ import { companiesApi } from './companiesApi';
 import { contactsApi } from './contactsApi';
 import { countriesApi } from './countriesApi';
 import { regionsApi } from './regionsApi';
+import { usersApi } from './usersApi';
 import authSlice from './authSlice';
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
-    [contactsApi.reducerPath]: contactsApi.reducer,
+    [citiesApi.reducerPath]: citiesApi.reducer,
     [companiesApi.reducerPath]: companiesApi.reducer,
-    [regionsApi.reducerPath]: regionsApi.reducer,
+    [contactsApi.reducerPath]: contactsApi.reducer,
     [countriesApi.reducerPath]: countriesApi.reducer,
-    [citiesApi.reducerPath]: citiesApi.reducer
+    [regionsApi.reducerPath]: regionsApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(contactsApi.middleware)
-      .concat(companiesApi.middleware)
-      .concat(regionsApi.middleware)
-      .concat(countriesApi.middleware)
       .concat(citiesApi.middleware)
+      .concat(companiesApi.middleware)
+      .concat(contactsApi.middleware)
+      .concat(countriesApi.middleware)
+      .concat(regionsApi.middleware)
+      .concat(usersApi.middleware)
 });
 
 export default store;
