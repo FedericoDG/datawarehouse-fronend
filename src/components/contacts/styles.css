@@ -9,39 +9,93 @@ progress {
 progress::-webkit-progress-bar {
   background-color: transparent;
 }
-progress[value='25']::-webkit-progress-value {
-  background-color: #0cdeff;
+progress[value='10']::-webkit-progress-value {
+  background-color: hwb(86 0% 0%);
   border-radius: 3px;
 }
-progress[value='25']::-moz-progress-bar {
+progress[value='10']::-moz-progress-bar {
   appearance: none;
-  background-color: #0cdeff;
+  background-color: #8fff00;
+  border-radius: 3px;
+}
+progress[value='20']::-webkit-progress-value {
+  background-color: #00ff85;
+  border-radius: 3px;
+}
+progress[value='20']::-moz-progress-bar {
+  appearance: none;
+  background-color: #00ff85;
+  border-radius: 3px;
+}
+progress[value='30']::-webkit-progress-value {
+  background-color: #00c2ff;
+  border-radius: 3px;
+}
+progress[value='30']::-moz-progress-bar {
+  appearance: none;
+  background-color: #00c2ff;
+  border-radius: 3px;
+}
+progress[value='40']::-webkit-progress-value {
+  background-color: #00a3ff;
+  border-radius: 3px;
+}
+progress[value='40']::-moz-progress-bar {
+  appearance: none;
+  background-color: #00a3ff;
   border-radius: 3px;
 }
 progress[value='50']::-webkit-progress-value {
-  background-color: #ffe70c;
+  background-color: #001aff;
   border-radius: 3px;
 }
 progress[value='50']::-moz-progress-bar {
   appearance: none;
-  background-color: #ffe70c;
+  background-color: #001aff;
   border-radius: 3px;
 }
-progress[value='75']::-webkit-progress-value {
-  background-color: #ff9e0c;
+progress[value='60']::-webkit-progress-value {
+  background-color: #7000ff;
   border-radius: 3px;
 }
-progress[value='75']::-moz-progress-bar {
+progress[value='60']::-moz-progress-bar {
   appearance: none;
-  background-color: #ff9e0c;
+  background-color: #7000ff;
+  border-radius: 3px;
+}
+progress[value='70']::-webkit-progress-value {
+  background-color: #ad00ff;
+  border-radius: 3px;
+}
+progress[value='70']::-moz-progress-bar {
+  appearance: none;
+  background-color: #ad00ff;
+  border-radius: 3px;
+}
+progress[value='80']::-webkit-progress-value {
+  background-color: #fa00ff;
+  border-radius: 3px;
+}
+progress[value='80']::-moz-progress-bar {
+  appearance: none;
+  background-color: #fa00ff;
+  border-radius: 3px;
+}
+progress[value='90']::-webkit-progress-value {
+  background-color: #ff00b8;
+  border-radius: 3px;
+}
+progress[value='90']::-moz-progress-bar {
+  appearance: none;
+  background-color: #ff00b8;
   border-radius: 3px;
 }
 progress[value='100']::-webkit-progress-value {
-  background-color: #e64343;
+  background-color: #ff0000;
   border-radius: 3px;
 }
 progress[value='100']::-moz-progress-bar {
   appearance: none;
-  background-color: #e64343;
+  background-color: #ff0000;
   border-radius: 3px;
 }

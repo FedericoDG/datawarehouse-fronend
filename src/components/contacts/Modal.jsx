@@ -40,6 +40,19 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
     register
   } = useForm({ defaultValues: { ...activeData } });
 
+  const onSubmit = (data) => {
+    let message;
+    if (activeData.id) {
+      handleEditContact(data);
+      message = 'Contacto editado con éxito';
+    } else {
+      handleAddContact(data);
+      message = 'Contacto creado con éxito';
+    }
+    handleClose();
+    notification('success', message);
+  };
+
   if (isLoadingCompanies || isLoadingCities) {
     return (
       <Modal
@@ -62,20 +75,6 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
     );
   }
 
-  const onSubmit = (data) => {
-    let message;
-    if (activeData.id) {
-      handleEditContact(data);
-      message = 'Contacto editado con éxito';
-    } else {
-      handleAddContact(data);
-      message = 'Contacto creado con éxito';
-    }
-    handleClose();
-
-    notification('success', message);
-  };
-
   return (
     <Modal
       closeAfterTransition
@@ -91,7 +90,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
       <Fade in={open}>
         <Box sx={style} component={Paper}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Typography align='center' variant='h6' textTransform='uppercase' fontWeight={600}>
+            <Typography align='center' variant='h5' textTransform='uppercase' fontWeight={500}>
               {activeData.id ? 'Editar Contacto' : 'Agregar Contacto'}
             </Typography>
             <Stack p={1} spacing={1} direction='row' flex alignItems='center'>
@@ -231,8 +230,8 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
                   defaultValue={activeData.interest}
                   marks
                   max={100}
-                  min={0}
-                  step={25}
+                  min={10}
+                  step={10}
                   tabIndex={8}
                   valueLabelDisplay='auto'
                   {...register('interest')}
