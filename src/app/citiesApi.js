@@ -17,10 +17,12 @@ export const citiesApi = createApi({
   endpoints: (builder) => ({
     getCities: builder.query({
       query: () => '/cities',
+      transformResponse: (response) => response.cities,
       providesTags: ['cities']
     }),
     getCity: builder.query({
       query: (id) => `/cities/${id}`,
+      transformResponse: (response) => response.city,
       providesTags: ['cities']
     }),
     addCity: builder.mutation({

@@ -17,10 +17,12 @@ export const contactsApi = createApi({
   endpoints: (builder) => ({
     getContacts: builder.query({
       query: (filter) => `/contacts?filter=${filter}`,
+      transformResponse: (response) => response.contacts,
       providesTags: ['contacts']
     }),
     getContact: builder.query({
       query: (id) => `/contacts/${id}`,
+      transformResponse: (response) => response.contacts,
       providesTags: ['contacts']
     }),
     addContact: builder.mutation({

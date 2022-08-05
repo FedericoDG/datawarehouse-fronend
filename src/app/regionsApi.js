@@ -17,10 +17,12 @@ export const regionsApi = createApi({
   endpoints: (builder) => ({
     getRegions: builder.query({
       query: () => '/regions',
+      transformResponse: (response) => response.regions,
       providesTags: ['regions']
     }),
     getRegion: builder.query({
       query: (id) => `/regions/${id}`,
+      transformResponse: (response) => response.region,
       providesTags: ['regions']
     }),
     addRegion: builder.mutation({

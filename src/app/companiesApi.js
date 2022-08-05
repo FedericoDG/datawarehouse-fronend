@@ -17,10 +17,12 @@ export const companiesApi = createApi({
   endpoints: (builder) => ({
     getCompanies: builder.query({
       query: () => '/companies',
+      transformResponse: (response) => response.companies,
       providesTags: ['companies']
     }),
     getCompany: builder.query({
       query: (id) => `/companies/${id}`,
+      transformResponse: (response) => response.company,
       providesTags: ['companies']
     }),
     addCompany: builder.mutation({

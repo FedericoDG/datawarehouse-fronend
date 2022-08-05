@@ -17,10 +17,12 @@ export const countriesApi = createApi({
   endpoints: (builder) => ({
     getCountries: builder.query({
       query: () => '/countries',
+      transformResponse: (response) => response.countries,
       providesTags: ['countries']
     }),
     getCountry: builder.query({
       query: (id) => `/countries/${id}`,
+      transformResponse: (response) => response.country,
       providesTags: ['countries']
     }),
     addCountry: builder.mutation({
