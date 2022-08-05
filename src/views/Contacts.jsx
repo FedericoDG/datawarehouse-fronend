@@ -1,45 +1,50 @@
-import { Button, Divider, Grid, InputBase, Paper, TextField } from '@mui/material';
-import { useAddContactMutation, useDeteleContactMutation, useEditContactMutation, useGetContactsQuery } from '../app/contactsApi';
-import { useState } from 'react';
+import { Button, Grid } from '@mui/material';
+import { CSVLink } from 'react-csv';
+import { useMemo, useState } from 'react';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
+import { useAddContactMutation, useDeteleContactMutation, useEditContactMutation, useGetContactsQuery } from '../app/contactsApi';
 import Layout from '../components/ui/Layout';
 import ModalContacts from '../components/contacts/Modal';
-import Table from '../components/contacts/Table';
 import Search from '../components/contacts/Seach';
+import Table from '../components/contacts/Table';
 
 const Contacts = () => {
-  const defaultContact = {
-    id_contact: '',
-    name: '',
-    lastname: '',
-    email: '',
-    address: '',
-    phone: '',
-    preference_phone: 1,
-    preference_phone_name: 'sin preferencia',
-    linkedin: '',
-    preference_linkedin: 1,
-    preference_linkedin_name: 'sin preferencia',
-    facebook: '',
-    preference_facebook: 1,
-    preference_facebook_name: 'sin preferencia',
-    twitter: '',
-    preference_twitter: 1,
-    preference_twitter_name: 'sin preferencia',
-    instagram: '',
-    preference_instagram: 1,
-    preference_instagram_name: 'sin preferencia',
-    position: '',
-    interest: 50,
-    id_company: '',
-    company_name: '',
-    id_city: '',
-    city_name: '',
-    id_country: '',
-    country_name: '',
-    id_region: '',
-    region_name: ''
-  };
+  const defaultContact = useMemo(
+    () => ({
+      id_contact: '',
+      name: '',
+      lastname: '',
+      email: '',
+      address: '',
+      phone: '',
+      preference_phone: 1,
+      preference_phone_name: 'sin preferencia',
+      linkedin: '',
+      preference_linkedin: 1,
+      preference_linkedin_name: 'sin preferencia',
+      facebook: '',
+      preference_facebook: 1,
+      preference_facebook_name: 'sin preferencia',
+      twitter: '',
+      preference_twitter: 1,
+      preference_twitter_name: 'sin preferencia',
+      instagram: '',
+      preference_instagram: 1,
+      preference_instagram_name: 'sin preferencia',
+      position: '',
+      interest: 50,
+      id_company: '',
+      company_name: '',
+      id_city: '',
+      city_name: '',
+      id_country: '',
+      country_name: '',
+      id_region: '',
+      region_name: ''
+    }),
+    []
+  );
 
   const [activeData, setActiveData] = useState(defaultContact);
   const [filter, setFilter] = useState('');
@@ -93,6 +98,11 @@ const Contacts = () => {
           <Search handleReset={handleReset} handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
         </Grid>
         <Grid item>
+          <Button variant='outlined' startIcon={<FileDownloadIcon />} sx={{ marginRight: 2 }}>
+            <CSVLink data={data} filename='my-file.csv' style={{ textDecoration: 'none' }}>
+              CSV
+            </CSVLink>
+          </Button>
           <Button size='large' variant='contained' onClick={() => handleOpen()}>
             Agregar Contacto
           </Button>
