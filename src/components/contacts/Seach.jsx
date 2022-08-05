@@ -13,11 +13,11 @@ const Search = ({ handleReset, handleSubmit, search, setSearch }) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <IconButton type='submit' sx={{ p: '10px' }} aria-label='search'>
+      <IconButton type='submit' sx={{ p: '10px' }}>
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation='vertical' />
-      <IconButton color='primary' sx={{ p: '10px' }} onClick={handleReset}>
+      <IconButton color='error' sx={{ p: '10px' }} onClick={handleReset} disabled={!search}>
         <CloseIcon />
       </IconButton>
     </Paper>

@@ -21,7 +21,7 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
       field: 'fullname',
       headerName: 'Nombre Completo',
       width: 200,
-      valueGetter: (params) => ` ${params.row.lastname || ''} ${params.row.name || ''}`
+      valueGetter: (params) => ` ${params.row.lastname || ''}, ${params.row.name || ''}`
     },
     { field: 'company_name', headerName: 'Compañía', width: 300 },
     { field: 'position', headerName: 'Cargo', width: 150 },

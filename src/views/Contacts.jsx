@@ -8,6 +8,7 @@ import Layout from '../components/ui/Layout';
 import ModalContacts from '../components/contacts/Modal';
 import Search from '../components/contacts/Seach';
 import Table from '../components/contacts/Table';
+import Buttons from '../components/contacts/Buttons';
 
 const Contacts = () => {
   const defaultContact = useMemo(
@@ -51,7 +52,7 @@ const Contacts = () => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
 
-  const { data, isLoading } = useGetContactsQuery(filter);
+  const { data: contacts, isLoading } = useGetContactsQuery(filter);
   const [addContact] = useAddContactMutation();
   const [editContact] = useEditContactMutation();
   const [deleteContact] = useDeteleContactMutation();
@@ -98,17 +99,10 @@ const Contacts = () => {
           <Search handleReset={handleReset} handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
         </Grid>
         <Grid item>
-          <Button variant='outlined' startIcon={<FileDownloadIcon />} sx={{ marginRight: 2 }}>
-            <CSVLink data={data} filename='my-file.csv' style={{ textDecoration: 'none' }}>
-              CSV
-            </CSVLink>
-          </Button>
-          <Button size='large' variant='contained' onClick={() => handleOpen()}>
-            Agregar Contacto
-          </Button>
+          <Buttons contacts={contacts} handleOpen={handleOpen} />
         </Grid>
       </Grid>
-      <Table handleDeleteContact={handleDeleteContact} handleOpen={handleOpen} rows={data} setActiveData={setActiveData} />
+      <Table handleDeleteContact={handleDeleteContact} handleOpen={handleOpen} rows={contacts} setActiveData={setActiveData} />
       {open && (
         <ModalContacts
           activeData={activeData}
