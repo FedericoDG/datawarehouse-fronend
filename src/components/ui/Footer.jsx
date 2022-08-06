@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
+import styled from '@emotion/styled';
 
 const Footer = () => {
   const AStyled = styled('a')`
@@ -18,4 +18,5 @@ const Footer = () => {
     </Box>
   );
 };
+
 export default Footer;
