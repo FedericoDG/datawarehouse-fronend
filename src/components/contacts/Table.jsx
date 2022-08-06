@@ -9,6 +9,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import styled from '@emotion/styled';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { useTheme } from '@mui/material/styles';
 
 import { notification } from '../../utils/notification';
 
@@ -26,16 +27,52 @@ const StyledDataGrid = styled(DataGrid)`
 const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
   const confirm = useConfirm();
 
+  const theme = useTheme();
+
+  const styles = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 45,
+    height: 45,
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: '50%'
+  };
+
   const columns = [
     {
-      field: 'fullname',
-      headerName: 'Nombre Completo',
-      width: 200,
-      valueGetter: (params) => ` ${params.row.lastname || ''}, ${params.row.name || ''}`
+      field: 'avatar',
+      headerName: '',
+      width: 70,
+      sortable: false,
+      renderCell: (params) => (
+        <div style={styles}>
+          <span style={{ fontWeight: 500, color: 'white', fontSize: '1.25rem' }}>
+            {' '}
+            {params.row.lastname.at(0)}
+            {params.row.name.at(0)}
+          </span>
+        </div>
+      )
     },
-    { field: 'company_name', headerName: 'Compañía', width: 250 },
-    { field: 'email', headerName: 'Email', width: 260, flex: 1 },
-    { field: 'position', headerName: 'Cargo', width: 150 },
+    {
+      field: 'contact',
+      headerName: 'Contacto',
+      width: 200,
+      flex: 1,
+      sortable: false,
+      renderCell: (params) => (
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <span style={{ fontWeight: 500 }}>
+            {params.row.lastname}, {params.row.name}
+          </span>
+          <span style={{ fontWeight: 300 }}>{params.row.email}</span>
+        </div>
+      )
+    },
+    { field: 'company_name', headerName: 'Compañía', width: 260, sortable: false },
+    { field: 'phone', headerName: 'Teléfono', width: 140, sortable: false },
+    { field: 'position', headerName: 'Cargo', width: 150, sortable: false },
     {
       field: 'interest',
       headerName: 'Interés',
@@ -89,7 +126,7 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
       headerName: 'Acciones',
       align: 'center',
       headerAlign: 'center',
-      width: 100,
+      width: 90,
       sortable: false,
       renderCell: (obj) => (
         <>

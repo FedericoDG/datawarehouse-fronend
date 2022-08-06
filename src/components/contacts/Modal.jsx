@@ -19,6 +19,21 @@ const style = {
   borderRadius: 1
 };
 
+const marks = [
+  {
+    value: 0,
+    label: '0'
+  },
+  {
+    value: 50,
+    label: '50'
+  },
+  {
+    value: 100,
+    label: '100'
+  }
+];
+
 const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handleAddContact }) => {
   const {
     lastname,
@@ -210,12 +225,12 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
                 <Slider
                   color='secondary'
                   defaultValue={activeData.interest}
-                  marks
                   max={100}
-                  min={10}
+                  marks={marks}
+                  min={0}
                   step={10}
                   tabIndex={8}
-                  valueLabelDisplay='auto'
+                  valueLabelDisplay='on'
                   {...register('interest')}
                 />
               </Box>
