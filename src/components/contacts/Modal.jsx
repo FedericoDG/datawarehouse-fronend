@@ -230,7 +230,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
                   min={0}
                   step={10}
                   tabIndex={8}
-                  valueLabelDisplay='on'
+                  valueLabelDisplay='auto'
                   {...register('interest')}
                 />
               </Box>
