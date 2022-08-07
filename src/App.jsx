@@ -16,7 +16,7 @@ const App = () => (
       <ConfirmProvider>
         <AppRoutes />
       </ConfirmProvider>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={2500} />
     </ThemeProvider>
   </Provider>
 );
