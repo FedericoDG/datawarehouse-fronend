@@ -1,5 +1,5 @@
 import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Stack, TextField, Typography } from '@mui/material';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import FlagIcon from '@mui/icons-material/Flag';
 
 import useModalCountries from '../../hooks/useModalCountries';
 
@@ -11,7 +11,7 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  minWidth: 1300,
+  minWidth: 650,
   minHeight: 233,
   borderRadius: 1
 };
@@ -59,7 +59,7 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
                   zIndex: 99
                 }}
               >
-                <ApartmentIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
+                <FlagIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
                 fullWidth
@@ -73,12 +73,15 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
                 error={!!errors.name}
                 helperText={errors.name?.message}
               />
+            </Stack>
+            <Stack p={1} spacing={1} direction='row' flex alignItems='center'>
               <TextField
                 defaultValue={activeData.id_region}
                 fullWidth
                 inputProps={{ tabIndex: '4' }}
                 label='Región'
                 select
+                sx={{ maxWidth: 460, marginLeft: 'auto' }}
                 variant='standard'
                 {...register('id_region', {
                   required: 'La región obligatorio'

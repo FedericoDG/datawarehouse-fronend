@@ -1,5 +1,5 @@
 import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Stack, TextField, Typography } from '@mui/material';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import PlaceIcon from '@mui/icons-material/Place';
 
 import useModalCities from '../../hooks/useModalCities';
 
@@ -11,7 +11,7 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  minWidth: 1300,
+  minWidth: 650,
   minHeight: 233,
   borderRadius: 1
 };
@@ -59,7 +59,7 @@ const ModalCities = ({ activeData, open, handleClose, handleEditCity, handleAddC
                   zIndex: 99
                 }}
               >
-                <ApartmentIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
+                <PlaceIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
                 fullWidth
@@ -73,6 +73,8 @@ const ModalCities = ({ activeData, open, handleClose, handleEditCity, handleAddC
                 error={!!errors.name}
                 helperText={errors.name?.message}
               />
+            </Stack>
+            <Stack p={1} spacing={1} direction='row' flex alignItems='center'>
               <TextField
                 defaultValue={activeData.id_country}
                 fullWidth
@@ -80,6 +82,7 @@ const ModalCities = ({ activeData, open, handleClose, handleEditCity, handleAddC
                 label='País'
                 select
                 variant='standard'
+                sx={{ maxWidth: 460, marginLeft: 'auto' }}
                 {...register('id_country', {
                   required: 'El país es obligatorio'
                 })}

@@ -1,5 +1,5 @@
 import { Backdrop, Box, Button, Fade, Grid, Modal, Paper, Stack, TextField, Typography } from '@mui/material';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import PublicIcon from '@mui/icons-material/Public';
 
 import useModalRegions from '../../hooks/useModalRegions';
 
@@ -11,7 +11,7 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  minWidth: 1300,
+  minWidth: 650,
   minHeight: 233,
   borderRadius: 1
 };
@@ -59,7 +59,7 @@ const ModalRegions = ({ activeData, open, handleClose, handleEditRegion, handleA
                   zIndex: 99
                 }}
               >
-                <ApartmentIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
+                <PublicIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
                 fullWidth
