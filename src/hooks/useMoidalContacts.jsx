@@ -2,8 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 import { notification } from '../utils/notification';
-import { useGetCitiesQuery } from '../app/citiesApi';
-import { useGetCompaniesQuery } from '../app/companiesApi';
+import { useGetCitiesQuery, useGetCompaniesQuery } from '../app/api';
 
 const useModalContacts = ({ activeData, handleEditContact, handleAddContact, handleClose }) => {
   const [lastname, setLastname] = useState(activeData.lastname.at(0));

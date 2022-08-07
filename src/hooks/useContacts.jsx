@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useAddContactMutation, useDeteleContactMutation, useEditContactMutation, useGetContactsQuery } from '../app/contactsApi';
+import { useAddContactMutation, useDeteleContactMutation, useEditContactMutation, useGetContactsQuery } from '../app/api';
 
 import defaultContact from '../constants/defaultContact';
 
-const useContects = () => {
+const useContacts = () => {
   const [activeData, setActiveData] = useState(defaultContact);
   const [filter, setFilter] = useState('');
   const [open, setOpen] = useState(false);
@@ -64,4 +64,4 @@ const useContects = () => {
   };
 };
 
-export default useContects;
+export default useContacts;

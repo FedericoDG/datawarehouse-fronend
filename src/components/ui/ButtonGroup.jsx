@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { CSVLink } from 'react-csv';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
-const ButtonGroup = ({ contacts = [], handleOpen, title, csv = true }) => {
+const ButtonGroup = ({ contacts = [], handleOpen, title, csv = true, activeData }) => {
   return (
     <>
       {csv && (
@@ -12,7 +12,7 @@ const ButtonGroup = ({ contacts = [], handleOpen, title, csv = true }) => {
           </CSVLink>
         </Button>
       )}
-      <Button size='large' variant='contained' sx={{ minWidth: 206, minHeight: 44 }} onClick={() => handleOpen()}>
+      <Button size='large' variant='contained' sx={{ minWidth: 206, minHeight: 44 }} onClick={() => handleOpen(activeData)}>
         {title}
       </Button>
     </>

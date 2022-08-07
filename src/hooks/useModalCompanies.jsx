@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import { notification } from '../utils/notification';
-import { useGetCitiesQuery } from '../app/citiesApi';
+import { useGetCitiesQuery } from '../app/api';
 
 const useModalCompany = ({ activeData, handleEditCompany, handleAddCompany, handleClose }) => {
   const { data: cities, isLoading: isLoadingCities } = useGetCitiesQuery();

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAddCompanyMutation, useDeteleCompanyMutation, useEditCompanyMutation, useGetCompaniesQuery } from '../app/companiesApi';
+import { useAddCompanyMutation, useDeteleCompanyMutation, useEditCompanyMutation, useGetCompaniesQuery } from '../app/api';
 
 import defaultCompany from '../constants/defaultCompany';
 

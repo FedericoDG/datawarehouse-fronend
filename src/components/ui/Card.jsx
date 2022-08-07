@@ -28,10 +28,9 @@ const MuiCard = ({ title, subtitle, type, data, handleOpen, handleDelete }) => {
     type === 'region' ? 'Región eliminada con éxito' : type === 'country' ? 'País eliminado con éxito' : 'Ciudad eliminada con éxito';
 
   const onDelete = () => {
-    console.log(data);
     confirm({
       title: titleConfirm,
-      content: contentComfirm,
+      content: `${contentComfirm}. Al eliminar una Región/País/Ciudad, se eliminarán todos los datos relacionados con ella.`,
       confirmationText: 'Eliminar',
       cancellationText: 'Cancelar',
       confirmationButtonProps: { variant: 'contained', color: 'error', autoFocus: true }

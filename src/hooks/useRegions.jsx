@@ -1,12 +1,23 @@
 import { useState } from 'react';
 
-import { useAddCountryMutation, useDeteleCountryMutation, useEditCountryMutation, useGetCountriesQuery } from '../app/countriesApi';
-import { useAddRegionMutation, useDeleteRegionMutation, useEditRegionMutation, useGetRegionsQuery } from '../app/regionsApi';
+import {
+  useAddCountryMutation,
+  useDeteleCountryMutation,
+  useEditCountryMutation,
+  useGetCountriesQuery,
+  useAddRegionMutation,
+  useDeleteRegionMutation,
+  useEditRegionMutation,
+  useGetRegionsQuery,
+  useAddCityMutation,
+  useDeleteCityMutation,
+  useEditCityMutation,
+  useGetCitiesQuery
+} from '../app/api';
 
 import defaultRegion from '../constants/defaultRegion';
 import defaulCountry from '../constants/defaultCountry';
 import defaultCity from '../constants/defaultCity';
-import { useAddCityMutation, useDeleteCityMutation, useEditCityMutation, useGetCitiesQuery } from '../app/citiesApi';
 
 const useRegions = () => {
   const [openRegions, setOpenRegions] = useState(false);
