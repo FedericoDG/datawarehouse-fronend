@@ -3,9 +3,9 @@ import { Grid } from '@mui/material';
 import ButtonGroup from '../components/ui/ButtonGroup';
 import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
+import Loader from '../components/contacts/Loader';
 import ModalContacts from '../components/contacts/Modal';
 import Search from '../components/contacts/Search';
-import Spinner from '../components/ui/Spinner';
 import Table from '../components/contacts/Table';
 import useContacts from '../hooks/useContacts';
 
@@ -28,25 +28,9 @@ const Contacts = () => {
     handleReset
   } = useContacts();
 
-  if (isLoading) {
-    return (
-      <Layout>
-        <Grid container alignItems='center' justifyContent='space-between' my={2} spacing={2}>
-          <Grid item>
-            <Search handleReset={handleReset} handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
-          </Grid>
-          <Grid item>
-            <ButtonGroup contacts={contacts} handleOpen={handleOpen} title='Agregar Contacto' />
-          </Grid>
-        </Grid>
-        <Spinner height={510} />;
-      </Layout>
-    );
-  }
+  if (isLoading) return <Loader height={510} />;
 
-  if (isError) {
-    return <Error height={737} />;
-  }
+  if (isError) return <Error height={645} />;
 
   return (
     <Layout>

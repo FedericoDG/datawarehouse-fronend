@@ -4,11 +4,11 @@ import ButtonGroup from '../components/ui/ButtonGroup';
 import Card from '../components/ui/Card';
 import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
+import Loader from '../components/contacts/Loader';
 import ModalCities from '../components/regions/ModalCities';
-import Spinner from '../components/ui/Spinner';
-import useRegions from '../hooks/useRegions';
 import ModalCountries from '../components/regions/ModalCountries';
 import ModalRegions from '../components/regions/ModalRegions';
+import useRegions from '../hooks/useRegions';
 
 const Regions = () => {
   const {
@@ -45,21 +45,9 @@ const Regions = () => {
     handleOpenCities
   } = useRegions();
 
-  if (isLoadingRegions || isLoadingCountries || isLoadingCities) {
-    return (
-      <Layout>
-        <Spinner height={693} />;
-      </Layout>
-    );
-  }
+  if (isLoadingRegions || isLoadingCountries || isLoadingCities) return <Loader height={510} />;
 
-  if (isErrorRegions || isErrorCountries || isErrorCities) {
-    return (
-      <Layout>
-        <Error height={737} />;
-      </Layout>
-    );
-  }
+  if (isErrorRegions || isErrorCountries || isErrorCities) return <Error height={645} />;
 
   return (
     <Layout>
