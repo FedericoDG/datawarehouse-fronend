@@ -7,6 +7,8 @@ import Layout from '../components/ui/Layout';
 import ModalCities from '../components/regions/ModalCities';
 import Spinner from '../components/ui/Spinner';
 import useRegions from '../hooks/useRegions';
+import ModalCountries from '../components/regions/ModalCountries';
+import ModalRegions from '../components/regions/ModalRegions';
 
 const Regions = () => {
   const {
@@ -52,7 +54,11 @@ const Regions = () => {
   }
 
   if (isErrorRegions || isErrorCountries || isErrorCities) {
-    return <Error height={737} />;
+    return (
+      <Layout>
+        <Error height={737} />;
+      </Layout>
+    );
   }
 
   return (
@@ -66,7 +72,13 @@ const Regions = () => {
         {regions &&
           regions.map((region) => (
             <Grid item key={region.id_region}>
-              <Card title={region.name} type='region' />
+              <Card
+                title={region.name}
+                type='region'
+                data={region}
+                handleOpen={() => handleOpenRegions(region)}
+                handleDelete={handleDeleteRegion}
+              />
             </Grid>
           ))}
       </Grid>
@@ -79,7 +91,14 @@ const Regions = () => {
         {countries &&
           countries.map((country) => (
             <Grid item key={country.id_country}>
-              <Card title={country.name} subtitle={country.name_region} type='country' />
+              <Card
+                title={country.name}
+                subtitle={country.name_region}
+                type='country'
+                data={country}
+                handleOpen={() => handleOpenCountries(country)}
+                handleDelete={handleDeleteCountry}
+              />
             </Grid>
           ))}
       </Grid>
@@ -92,7 +111,14 @@ const Regions = () => {
         {cities &&
           cities.map((city) => (
             <Grid item key={city.id_city}>
-              <Card title={city.name} subtitle={city.name_country} type='city' handleOpen={() => handleOpenCities(city)} />
+              <Card
+                title={city.name}
+                subtitle={city.name_country}
+                type='city'
+                data={city}
+                handleOpen={() => handleOpenCities(city)}
+                handleDelete={handleDeleteCity}
+              />
             </Grid>
           ))}
       </Grid>
@@ -105,6 +131,26 @@ const Regions = () => {
           handleEditCity={handleEditCity}
           open={openCities}
           countries={countries}
+        />
+      )}
+      {openCountries && (
+        <ModalCountries
+          activeData={activeDataCountry}
+          handleAddCountry={handleAddCountry}
+          handleClose={handleClose}
+          handleEditCountry={handleEditCountry}
+          open={openCountries}
+          regions={regions}
+        />
+      )}
+      {openRegions && (
+        <ModalRegions
+          activeData={activeDataRegion}
+          handleAddRegion={handleAddRegion}
+          handleClose={handleClose}
+          handleEditRegion={handleEditRegion}
+          open={openRegions}
+          regions={regions}
         />
       )}
     </Layout>
