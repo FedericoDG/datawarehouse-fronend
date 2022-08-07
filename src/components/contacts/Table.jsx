@@ -107,27 +107,27 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
         <Grid container spacing={1} style={{ display: 'flex', justifyContent: 'flex-start', width: '100%', alignItems: 'center' }}>
           {obj.row.preference_phone === 2 && (
             <Grid item>
-              <PhoneAndroidIcon />
+              <PhoneAndroidIcon color='grey' />
             </Grid>
           )}
           {obj.row.preference_linkedin === 2 && (
             <Grid item>
-              <LinkedInIcon />
+              <LinkedInIcon color='grey' />
             </Grid>
           )}
           {obj.row.preference_facebook === 2 && (
             <Grid item>
-              <FacebookIcon />
+              <FacebookIcon color='grey' />
             </Grid>
           )}
           {obj.row.preference_twitter === 2 && (
             <Grid item>
-              <TwitterIcon />
+              <TwitterIcon color='grey' />
             </Grid>
           )}
           {obj.row.preference_instagram === 2 && (
             <Grid item>
-              <InstagramIcon />
+              <InstagramIcon color='grey' />
             </Grid>
           )}
         </Grid>

@@ -11,8 +11,11 @@ const Footer = () => {
   `;
 
   return (
-    <Box bottom={0} component='footer' my={2} position='fixed' width='100%'>
+    <Box bottom={0} component='footer' my={2} position='fixed' width='100%' sx={{ display: 'flex', justifyContent: 'center' }}>
       <Typography align='center' variant='body2' fontWeight={300}>
+        ¿Quieres saludarme?
+      </Typography>
+      <Typography align='center' variant='body2' fontWeight={300} sx={{ marginLeft: 1 }}>
         <AStyled href='mailto:fede@nazgul.com.ar'>fede@nazgul.com.ar</AStyled>
       </Typography>
     </Box>

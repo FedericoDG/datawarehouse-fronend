@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { grey, red } from '@mui/material/colors';
 
 const lightTheme = createTheme({
   palette: {
@@ -13,6 +14,12 @@ const lightTheme = createTheme({
       main: '#f44336',
       dark: '#ba000d',
       contrastText: '#000'
+    },
+    grey: {
+      main: grey[700]
+    },
+    error: {
+      main: red[700]
     }
   }
 });

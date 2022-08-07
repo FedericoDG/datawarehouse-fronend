@@ -26,7 +26,7 @@ const Search = ({ handleSubmit }) => {
     <Paper component='form' sx={{ p: '0 4px', display: 'flex', alignItems: 'center', width: 400 }} onSubmit={onSubmit}>
       <InputBase
         autoFocus
-        placeholder='Buscar contacto...'
+        placeholder='Buscar por nombre, compañía, etc...'
         sx={{ ml: 1, flex: 1 }}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
