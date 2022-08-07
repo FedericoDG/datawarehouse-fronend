@@ -1,12 +1,12 @@
 import { Grid } from '@mui/material';
+
+import ButtonGroup from '../components/ui/ButtonGroup';
+import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
 import ModalContacts from '../components/contacts/Modal';
-import Search from '../components/contacts/Seach';
-import Table from '../components/contacts/Table';
-import Buttons from '../components/contacts/Buttons';
+import Search from '../components/contacts/Search';
 import Spinner from '../components/ui/Spinner';
-
-import Error from '../components/ui/Error';
+import Table from '../components/contacts/Table';
 import useContects from '../hooks/useContacts';
 
 const Contacts = () => {
@@ -29,7 +29,19 @@ const Contacts = () => {
   } = useContects();
 
   if (isLoading) {
-    return <Spinner height={737} />;
+    return (
+      <Layout>
+        <Grid container alignItems='center' justifyContent='space-between' my={2} spacing={2}>
+          <Grid item>
+            <Search handleReset={handleReset} handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
+          </Grid>
+          <Grid item>
+            <ButtonGroup contacts={contacts} handleOpen={handleOpen} title='Agregar Contacto' />
+          </Grid>
+        </Grid>
+        <Spinner height={673} />;
+      </Layout>
+    );
   }
 
   if (isError) {
@@ -43,7 +55,7 @@ const Contacts = () => {
           <Search handleReset={handleReset} handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
         </Grid>
         <Grid item>
-          <Buttons contacts={contacts} handleOpen={handleOpen} />
+          <ButtonGroup contacts={contacts} handleOpen={handleOpen} title='Agregar Contacto' />
         </Grid>
       </Grid>
       <Table handleDeleteContact={handleDeleteContact} handleOpen={handleOpen} rows={contacts} setActiveData={setActiveData} />

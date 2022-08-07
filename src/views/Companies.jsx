@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
+
+import ButtonGroup from '../components/ui/ButtonGroup';
+import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
 import ModalContacts from '../components/companies/Modal';
-import Table from '../components/companies/Table';
-import Buttons from '../components/companies/Buttons';
 import Spinner from '../components/ui/Spinner';
-
-import Error from '../components/ui/Error';
+import Table from '../components/companies/Table';
 import useCompanies from '../hooks/useCompanies';
 
 const Companies = () => {
@@ -24,7 +24,16 @@ const Companies = () => {
   } = useCompanies();
 
   if (isLoading) {
-    return <Spinner height={737} />;
+    return (
+      <Layout>
+        <Grid container alignItems='center' justifyContent='flex-end' my={2} spacing={2}>
+          <Grid item>
+            <ButtonGroup contacts={companies} handleOpen={handleOpen} title='Agregar Contacto' />
+          </Grid>
+        </Grid>
+        <Spinner height={673} />;
+      </Layout>
+    );
   }
 
   if (isError) {
@@ -35,7 +44,7 @@ const Companies = () => {
     <Layout>
       <Grid container alignItems='center' justifyContent='flex-end' my={2} spacing={2}>
         <Grid item>
-          <Buttons contacts={companies} handleOpen={handleOpen} />
+          <ButtonGroup contacts={companies} handleOpen={handleOpen} title='Agregar Compañía' />
         </Grid>
       </Grid>
       <Table handleDeleteCompany={handleDeleteCompany} handleOpen={handleOpen} rows={companies} setActiveData={setActiveData} />
