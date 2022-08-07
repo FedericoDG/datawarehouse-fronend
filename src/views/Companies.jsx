@@ -28,10 +28,10 @@ const Companies = () => {
       <Layout>
         <Grid container alignItems='center' justifyContent='flex-end' my={2} spacing={2}>
           <Grid item>
-            <ButtonGroup contacts={companies} handleOpen={handleOpen} title='Agregar Contacto' />
+            <ButtonGroup contacts={companies} handleOpen={handleOpen} title='Agregar Compañía' />
           </Grid>
         </Grid>
-        <Spinner height={673} />;
+        <Spinner height={510} />;
       </Layout>
     );
   }

@@ -87,8 +87,9 @@ const ModalCompanies = ({ activeData, open, handleClose, handleEditCompany, hand
                 <ApartmentIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
+                autoFocus
                 fullWidth
-                inputProps={{ tabIndex: '3' }}
+                inputProps={{ tabIndex: '1' }}
                 label='Nombre'
                 variant='filled'
                 size='small'
@@ -101,7 +102,7 @@ const ModalCompanies = ({ activeData, open, handleClose, handleEditCompany, hand
               <TextField
                 defaultValue={activeData.id_city}
                 fullWidth
-                inputProps={{ tabIndex: '4' }}
+                inputProps={{ tabIndex: '2' }}
                 label='Ciudad'
                 select
                 variant='standard'
@@ -132,7 +133,7 @@ const ModalCompanies = ({ activeData, open, handleClose, handleEditCompany, hand
               />
               <TextField
                 fullWidth
-                inputProps={{ tabIndex: '3' }}
+                inputProps={{ tabIndex: '4' }}
                 label='Email'
                 variant='standard'
                 {...register('email', {
@@ -144,7 +145,7 @@ const ModalCompanies = ({ activeData, open, handleClose, handleEditCompany, hand
               />
               <TextField
                 fullWidth
-                inputProps={{ tabIndex: '3' }}
+                inputProps={{ tabIndex: '5' }}
                 label='Teléfono'
                 variant='standard'
                 {...register('phone', {
@@ -156,12 +157,12 @@ const ModalCompanies = ({ activeData, open, handleClose, handleEditCompany, hand
             </Stack>
             <Grid container spacing={2} justifyContent='flex-end' mt={2}>
               <Grid item>
-                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={20}>
+                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={6}>
                   Cancelar
                 </Button>
               </Grid>
               <Grid item>
-                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={19}>
+                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={7}>
                   Guardar
                 </Button>
               </Grid>

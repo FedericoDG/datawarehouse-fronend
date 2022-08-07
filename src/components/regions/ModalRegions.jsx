@@ -62,8 +62,9 @@ const ModalRegions = ({ activeData, open, handleClose, handleEditRegion, handleA
                 <PublicIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
+                autoFocus
                 fullWidth
-                inputProps={{ tabIndex: '3' }}
+                inputProps={{ tabIndex: '1' }}
                 label='Nombre'
                 variant='filled'
                 size='small'
@@ -76,12 +77,12 @@ const ModalRegions = ({ activeData, open, handleClose, handleEditRegion, handleA
             </Stack>
             <Grid container spacing={2} justifyContent='flex-end' mt={2}>
               <Grid item>
-                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={20}>
+                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={2}>
                   Cancelar
                 </Button>
               </Grid>
               <Grid item>
-                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={19}>
+                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={3}>
                   Guardar
                 </Button>
               </Grid>

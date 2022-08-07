@@ -48,7 +48,7 @@ const Regions = () => {
   if (isLoadingRegions || isLoadingCountries || isLoadingCities) {
     return (
       <Layout>
-        <Spinner height={737} />;
+        <Spinner height={693} />;
       </Layout>
     );
   }

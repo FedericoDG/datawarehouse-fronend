@@ -62,8 +62,9 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
                 <FlagIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
+                autoFocus
                 fullWidth
-                inputProps={{ tabIndex: '3' }}
+                inputProps={{ tabIndex: '1' }}
                 label='Nombre'
                 variant='filled'
                 size='small'
@@ -78,7 +79,7 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
               <TextField
                 defaultValue={activeData.id_region}
                 fullWidth
-                inputProps={{ tabIndex: '4' }}
+                inputProps={{ tabIndex: '2' }}
                 label='Región'
                 select
                 sx={{ maxWidth: 460, marginLeft: 'auto' }}
@@ -98,12 +99,12 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
             </Stack>
             <Grid container spacing={2} justifyContent='flex-end' mt={2}>
               <Grid item>
-                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={20}>
+                <Button color='error' sx={{ minWidth: 250, padding: 1 }} type='reset' variant='text' onClick={handleClose} tabIndex={3}>
                   Cancelar
                 </Button>
               </Grid>
               <Grid item>
-                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={19}>
+                <Button color='primary' sx={{ minWidth: 250, padding: 1 }} type='submit' variant='contained' tabIndex={4}>
                   Guardar
                 </Button>
               </Grid>

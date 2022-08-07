@@ -45,8 +45,27 @@ const Table = ({ handleDeleteCompany, handleOpen, rows, setActiveData }) => {
         </div>
       )
     },
-    { field: 'name', headerName: 'Nombre', width: 300, sortable: false },
-    { field: 'city', headerName: 'Ciudad', width: 200, sortable: false },
+    {
+      field: 'name',
+      headerName: 'Compañía',
+      width: 300,
+      sortable: false,
+      renderCell: (params) => <span style={{ fontWeight: 500 }}>{params.row.name}</span>
+    },
+    {
+      field: 'city',
+      headerName: 'Ciudad',
+      width: 200,
+      sortable: false,
+      renderCell: (params) => (
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <span style={{ fontWeight: 400 }}>{params.row.city}</span>
+          <span style={{ fontWeight: 300 }}>
+            <span>{`(${params.row.country})`}</span>
+          </span>
+        </div>
+      )
+    },
     { field: 'address', headerName: 'Dirección', width: 200, sortable: false, flex: 1 },
     { field: 'email', headerName: 'Email', width: 325, sortable: false },
     { field: 'phone', headerName: 'Teléfono', width: 140, sortable: false },

@@ -39,7 +39,7 @@ const Contacts = () => {
             <ButtonGroup contacts={contacts} handleOpen={handleOpen} title='Agregar Contacto' />
           </Grid>
         </Grid>
-        <Spinner height={673} />;
+        <Spinner height={510} />;
       </Layout>
     );
   }

@@ -70,7 +70,20 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
         </div>
       )
     },
-    { field: 'company_name', headerName: 'Compañía', width: 260, sortable: false },
+    /* { field: 'company_name', headerName: 'Compañía', width: 260, sortable: false }, */
+    {
+      field: 'company_name',
+      headerName: 'Compañía',
+      width: 260,
+      flex: 1,
+      sortable: false,
+      renderCell: (params) => (
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <span style={{ fontWeight: 400 }}>{params.row.company_name}</span>
+          <span style={{ fontWeight: 300 }}>{`(${params.row.city_name} - ${params.row.country_name})`}</span>
+        </div>
+      )
+    },
     { field: 'phone', headerName: 'Teléfono', width: 140, sortable: false },
     { field: 'position', headerName: 'Cargo', width: 150, sortable: false },
     {
