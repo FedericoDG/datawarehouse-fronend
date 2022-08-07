@@ -1,6 +1,7 @@
 import { Button, Grid } from '@mui/material';
 import { DataGrid, esES } from '@mui/x-data-grid';
 import { useConfirm } from 'material-ui-confirm';
+import { useTheme } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -9,7 +10,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import styled from '@emotion/styled';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { useTheme } from '@mui/material/styles';
 
 import { notification } from '../../utils/notification';
 
@@ -70,7 +70,6 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
         </div>
       )
     },
-    /* { field: 'company_name', headerName: 'Compañía', width: 260, sortable: false }, */
     {
       field: 'company_name',
       headerName: 'Compañía',

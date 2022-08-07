@@ -2,7 +2,6 @@ import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Stack, TextF
 import ApartmentIcon from '@mui/icons-material/Apartment';
 
 import { isEmail } from '../../utils/validations';
-
 import Spinner from '../ui/Spinner';
 import useModalCompanies from '../../hooks/useModalCompanies';
 

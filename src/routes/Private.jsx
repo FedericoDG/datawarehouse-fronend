@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Error404 from '../views/404';
 import Companies from '../views/Companies';
+import Error404 from '../views/404';
 
 import Contacts from '../views/Contacts';
 import Regions from '../views/Regions';

@@ -1,9 +1,8 @@
 import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
 
 import { isEmail } from '../../utils/validations';
-
-import Spinner from '../ui/Spinner';
 import preferences from '../../constants/preferencesArray';
+import Spinner from '../ui/Spinner';
 import useModalContacts from '../../hooks/useMoidalContacts';
 
 const style = {

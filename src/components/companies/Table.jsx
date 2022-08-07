@@ -2,10 +2,10 @@ import { Button } from '@mui/material';
 import { DataGrid, esES } from '@mui/x-data-grid';
 import { useConfirm } from 'material-ui-confirm';
 import { useTheme } from '@mui/material/styles';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import styled from '@emotion/styled';
-import ApartmentIcon from '@mui/icons-material/Apartment';
 
 import { notification } from '../../utils/notification';
 
