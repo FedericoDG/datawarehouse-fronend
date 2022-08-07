@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import ButtonGroup from '../components/ui/ButtonGroup';
 import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
-import ModalContacts from '../components/companies/Modal';
+import ModalCompanies from '../components/companies/Modal';
 import Spinner from '../components/ui/Spinner';
 import Table from '../components/companies/Table';
 import useCompanies from '../hooks/useCompanies';
@@ -49,7 +49,7 @@ const Companies = () => {
       </Grid>
       <Table handleDeleteCompany={handleDeleteCompany} handleOpen={handleOpen} rows={companies} setActiveData={setActiveData} />
       {open && (
-        <ModalContacts
+        <ModalCompanies
           activeData={activeData}
           handleAddCompany={handleAddCompany}
           handleClose={handleClose}

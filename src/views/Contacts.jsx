@@ -7,7 +7,7 @@ import ModalContacts from '../components/contacts/Modal';
 import Search from '../components/contacts/Search';
 import Spinner from '../components/ui/Spinner';
 import Table from '../components/contacts/Table';
-import useContects from '../hooks/useContacts';
+import useContacts from '../hooks/useContacts';
 
 const Contacts = () => {
   const {
@@ -26,7 +26,7 @@ const Contacts = () => {
     handleDeleteContact,
     handleSubmit,
     handleReset
-  } = useContects();
+  } = useContacts();
 
   if (isLoading) {
     return (

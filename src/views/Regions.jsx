@@ -65,7 +65,7 @@ const Regions = () => {
     <Layout>
       <Grid container alignItems='center' justifyContent='flex-end' my={2} spacing={2}>
         <Grid item>
-          <ButtonGroup handleOpen={handleOpenRegions} title='Agregar Región' csv={false} />
+          <ButtonGroup activeData={activeDataRegion} handleOpen={handleOpenRegions} title='Agregar Región' csv={false} />
         </Grid>
       </Grid>
       <Grid container alignItems='center' justifyContent='flex-start' spacing={1} sx={{ height: 116, overflow: 'auto' }}>
@@ -84,7 +84,7 @@ const Regions = () => {
       </Grid>
       <Grid container alignItems='center' justifyContent='flex-end' my={2} spacing={2}>
         <Grid item>
-          <ButtonGroup handleOpen={handleAddCountry} title='Agregar País' csv={false} />
+          <ButtonGroup activeData={activeDataCountry} handleOpen={handleOpenCountries} title='Agregar País' csv={false} />
         </Grid>
       </Grid>
       <Grid container alignItems='center' justifyContent='flex-start' spacing={1} sx={{ height: 116, overflow: 'auto' }}>
@@ -104,7 +104,7 @@ const Regions = () => {
       </Grid>
       <Grid container alignItems='center' justifyContent='flex-end' my={2} spacing={2}>
         <Grid item>
-          <ButtonGroup handleOpen={handleOpenCities} title='Agregar Ciudad' csv={false} />
+          <ButtonGroup activeData={activeDataCity} handleOpen={handleOpenCities} title='Agregar Ciudad' csv={false} />
         </Grid>
       </Grid>
       <Grid container alignItems='center' justifyContent='flex-start' spacing={1} sx={{ height: 116, overflow: 'auto' }}>
