@@ -152,29 +152,74 @@ export const api = createApi({
         method: 'DELETE'
       }),
       invalidatesTags: ['regions', 'countries', 'cities', 'contacts', 'companies']
+    }),
+    /* USERS */
+    getUsers: builder.query({
+      query: () => '/users',
+      transformResponse: (response) => response.users,
+      providesTags: ['users']
+    }),
+    getUser: builder.query({
+      query: (id) => `/users/${id}`,
+      transformResponse: (response) => response.user,
+      providesTags: ['users']
+    }),
+    addUser: builder.mutation({
+      query: (user) => ({
+        url: '/users',
+        method: 'POST',
+        body: user
+      }),
+      invalidatesTags: ['users']
+    }),
+    editUser: builder.mutation({
+      query: ({ id_user, ...rest }) => ({
+        url: `/users/${id_user}`,
+        method: 'PUT',
+        body: rest
+      }),
+      invalidatesTags: ['users']
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['users']
     })
   })
 });
 
 export const {
+  // CONTACTS
   useGetContactsQuery,
   useAddContactMutation,
   useEditContactMutation,
   useDeteleContactMutation,
+  // COMPANIES
   useGetCompaniesQuery,
   useAddCompanyMutation,
   useEditCompanyMutation,
   useDeteleCompanyMutation,
+  // CITIES
   useGetCitiesQuery,
   useAddCityMutation,
   useEditCityMutation,
   useDeleteCityMutation,
+  // COUNTRIES
   useGetCountriesQuery,
   useAddCountryMutation,
   useEditCountryMutation,
   useDeteleCountryMutation,
+  // REGIONS
   useGetRegionsQuery,
   useAddRegionMutation,
   useEditRegionMutation,
-  useDeleteRegionMutation
+  useDeleteRegionMutation,
+  // USERS
+  useGetUsersQuery,
+  useGetUserQuery,
+  useAddUserMutation,
+  useEditUserMutation,
+  useDeleteUserMutation
 } = api;
