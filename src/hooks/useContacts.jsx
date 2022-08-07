@@ -7,7 +7,6 @@ const useContacts = () => {
   const [activeData, setActiveData] = useState(defaultContact);
   const [filter, setFilter] = useState('');
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState('');
 
   const { data: contacts, isError, isLoading } = useGetContactsQuery(filter);
   const [addContact] = useAddContactMutation();
@@ -35,22 +34,14 @@ const useContacts = () => {
     await deleteContact(id);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (search) => {
     setFilter(search);
-  };
-
-  const handleReset = () => {
-    setSearch('');
-    setFilter('');
   };
 
   return {
     activeData,
     setActiveData,
     open,
-    search,
-    setSearch,
     contacts,
     isError,
     isLoading,
@@ -59,8 +50,7 @@ const useContacts = () => {
     handleAddContact,
     handleEditContact,
     handleDeleteContact,
-    handleSubmit,
-    handleReset
+    handleSubmit
   };
 };
 

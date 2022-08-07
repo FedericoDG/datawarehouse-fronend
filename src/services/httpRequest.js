@@ -15,7 +15,7 @@ const httpRequest = (verb, endpoint, data, headers = {}) => {
 
   config.method = verb;
 
-  config.url = import.meta.env.VITE_API_URL + endpoint;
+  config.url = import.meta.env.VITE_API_URL + '/v1' + endpoint;
 
   if (data) {
     config.data = data;

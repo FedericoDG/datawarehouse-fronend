@@ -24,8 +24,7 @@ const Contacts = () => {
     handleAddContact,
     handleEditContact,
     handleDeleteContact,
-    handleSubmit,
-    handleReset
+    handleSubmit
   } = useContacts();
 
   if (isLoading) return <Loader height={510} />;
@@ -36,7 +35,7 @@ const Contacts = () => {
     <Layout>
       <Grid container alignItems='center' justifyContent='space-between' my={2} spacing={2}>
         <Grid item>
-          <Search handleReset={handleReset} handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
+          <Search handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
         </Grid>
         <Grid item>
           <ButtonGroup contacts={contacts} handleOpen={handleOpen} title='Agregar Contacto' />

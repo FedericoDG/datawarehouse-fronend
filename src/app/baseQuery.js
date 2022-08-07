@@ -1,7 +1,7 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3005/v1',
+  baseUrl: `${import.meta.env.VITE_API_URL}/v1`,
   prepareHeaders: (headers, { getState }) => {
     headers.set('Accept', 'application/json');
     headers.set('Cache-Control', 'no-cache');
