@@ -27,7 +27,7 @@ const Contacts = () => {
     handleSubmit
   } = useContacts();
 
-  if (isLoading) return <Loader height={510} />;
+  if (isLoading) return <Loader height={510} title='agregar contacto' />;
 
   if (isError) return <Error height={645} />;
 

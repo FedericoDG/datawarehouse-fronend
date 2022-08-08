@@ -5,15 +5,19 @@ import Layout from '../ui/Layout';
 import Search from './Search';
 import Spinner from '../ui/Spinner';
 
-const Loader = ({ height }) => (
+const Loader = ({ height, title, noButton }) => (
   <Layout>
     <Grid container alignItems='center' justifyContent='space-between' my={2} spacing={2}>
-      <Grid item>
-        <Search />
-      </Grid>
-      <Grid item>
-        <ButtonGroup title='Agregar Contacto' />
-      </Grid>
+      {!noButton && (
+        <>
+          <Grid item>
+            <Search />
+          </Grid>
+          <Grid item>
+            <ButtonGroup title={title} />
+          </Grid>
+        </>
+      )}
     </Grid>
     <Spinner height={height} />;
   </Layout>

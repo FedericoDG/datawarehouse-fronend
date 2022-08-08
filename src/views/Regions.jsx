@@ -45,7 +45,7 @@ const Regions = () => {
     handleOpenCities
   } = useRegions();
 
-  if (isLoadingRegions || isLoadingCountries || isLoadingCities) return <Loader height={510} />;
+  if (isLoadingRegions || isLoadingCountries || isLoadingCities) return <Loader height={510} noButton />;
 
   if (isErrorRegions || isErrorCountries || isErrorCities) return <Error height={645} />;
 
