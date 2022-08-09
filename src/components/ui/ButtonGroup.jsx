@@ -11,7 +11,7 @@ const ButtonGroup = ({ contacts = [], handleOpen, title, csv = true, activeData 
         </CSVLink>
       </Button>
     )}
-    <Button size='large' variant='contained' sx={{ minWidth: 206, minHeight: 44 }} onClick={() => handleOpen(activeData)}>
+    <Button size='large' variant='contained' sx={{ minWidth: 206, minHeight: 44 }} onClick={() => handleOpen(activeData, true)}>
       {title}
     </Button>
   </>

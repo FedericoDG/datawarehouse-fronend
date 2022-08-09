@@ -8,6 +8,18 @@ export const isValidEmail = (email) => {
   return !!match;
 };
 
+export const isValidPassword = (password) => {
+  const match = String(password).match(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{8,50}/);
+
+  return !!match;
+};
+
 export const isEmail = (email) => {
   return isValidEmail(email) ? undefined : 'El correo no parece ser válido';
+};
+
+export const isPassword = (password) => {
+  return isValidPassword(password)
+    ? undefined
+    : 'La contraseña de tener un mínimo 8 caracteres, e incluir al menos una letra en mayúscula y un caracter especial';
 };

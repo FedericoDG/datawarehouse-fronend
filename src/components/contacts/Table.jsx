@@ -79,7 +79,7 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
       renderCell: (params) => (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <span style={{ fontWeight: 400 }}>{params.row.company_name}</span>
-          <span style={{ fontWeight: 300 }}>{`(${params.row.city_name} - ${params.row.country_name})`}</span>
+          <span style={{ fontWeight: 300 }}>{`(${params.row.company_city_name} - ${params.row.company_country_name})`}</span>
         </div>
       )
     },
