@@ -166,7 +166,7 @@ export const api = createApi({
     }),
     addUser: builder.mutation({
       query: (user) => ({
-        url: '/users',
+        url: '/users/register',
         method: 'POST',
         body: user
       }),
