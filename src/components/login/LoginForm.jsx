@@ -39,7 +39,13 @@ const LoginForm = () => {
         </Grid>
         <Grid item xs={12}>
           <Typography align='center' color='initial' fontWeight='light' variant='h6'>
-            Que gusto tenerte aquí
+            Intenta con:
+          </Typography>
+          <Typography align='center' color='initial' fontWeight={500} variant='body2'>
+            admin@gmail.com - Password1234!
+          </Typography>
+          <Typography align='center' color='initial' fontWeight={500} variant='body2'>
+            user@gmail.com - Password1234!
           </Typography>
         </Grid>
         <Grid item xs={12} component='form' onSubmit={handleSubmit(onLogin)}>
