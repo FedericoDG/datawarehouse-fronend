@@ -8,7 +8,7 @@ const Layout = ({ children }) => (
     <Container sx={{ paddingTop: 10 }} maxWidth='xl'>
       {children}
     </Container>
-    <Footer />
+    <Footer fullwidth />
   </>
 );
 

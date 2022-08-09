@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 
-const Footer = () => {
+const Footer = ({ fullwidth }) => {
   const AStyled = styled('a')`
     color: ${(prop) => prop.theme.palette.primary.main};
     transition: color 0.2s ease-in-out;
@@ -16,7 +16,7 @@ const Footer = () => {
       component='footer'
       py={2}
       position='fixed'
-      width='100%'
+      width={fullwidth && '100%'}
       sx={{ display: 'flex', justifyContent: 'center' }}
       bgcolor='background.paper'
     >
