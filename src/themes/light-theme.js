@@ -11,9 +11,9 @@ const lightTheme = createTheme({
       contrastText: '#fff'
     },
     secondary: {
-      light: deepOrange[600],
-      main: deepOrange[700],
-      dark: deepOrange[800],
+      light: deepOrange[500],
+      main: deepOrange[600],
+      dark: deepOrange[700],
       contrastText: '#000'
     },
     grey: {

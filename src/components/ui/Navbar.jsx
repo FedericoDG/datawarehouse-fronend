@@ -200,9 +200,9 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
+              {/* <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign='center'>Perfil</Typography>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={() => dispatch(authLogout())}>
                 <Typography textAlign='center'>Salir</Typography>
               </MenuItem>
