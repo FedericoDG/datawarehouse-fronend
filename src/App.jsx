@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 import AppRoutes from './routes/AppRoutes';
+import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
 import store from './app/store';
 

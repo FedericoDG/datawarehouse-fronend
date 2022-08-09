@@ -3,7 +3,7 @@ import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Slider, Stac
 import { isEmail } from '../../utils/validations';
 import preferences from '../../constants/preferencesArray';
 import Spinner from '../ui/Spinner';
-import useModalContacts from '../../hooks/useMoidalContacts';
+import useModalContacts from '../../hooks/useModalContacts';
 
 const style = {
   position: 'absolute',

@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import ButtonGroup from '../components/ui/ButtonGroup';
 import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
-import Loader from '../components/contacts/Loader';
+import Loader from '../components/users/Loader';
 import ModalUsers from '../components/users/Modal';
 import Table from '../components/users/Table';
 import useUsers from '../hooks/useUsers';
@@ -25,7 +25,7 @@ const Users = () => {
     setcheck
   } = useUsers();
 
-  if (isLoading) return <Loader height={510} title='agregar compañía' />;
+  if (isLoading) return <Loader height={510} title='agregar usuario' />;
 
   if (isError) return <Error height={645} />;
 
