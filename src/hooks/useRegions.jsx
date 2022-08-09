@@ -15,9 +15,10 @@ import {
   useGetCitiesQuery
 } from '../app/api';
 
-import defaultRegion from '../constants/defaultRegion';
+import { notification } from '../utils/notification';
 import defaulCountry from '../constants/defaultCountry';
 import defaultCity from '../constants/defaultCity';
+import defaultRegion from '../constants/defaultRegion';
 
 const useRegions = () => {
   const [openRegions, setOpenRegions] = useState(false);
@@ -67,11 +68,25 @@ const useRegions = () => {
   };
 
   const handleAddRegion = async (region) => {
-    await addRegion(region);
+    const message = 'Región creada con éxito';
+    const result = await addRegion(region);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleEditRegion = async (region) => {
-    await editRegion(region);
+    const message = 'Región creada con éxito';
+    const result = await editRegion(region);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleDeleteRegion = async (id) => {
@@ -79,11 +94,25 @@ const useRegions = () => {
   };
 
   const handleAddCountry = async (country) => {
-    await addCountry(country);
+    const message = 'País creado con éxito';
+    const result = await addCountry(country);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleEditCountry = async (country) => {
-    await editCountry(country);
+    const message = 'País creado con éxito';
+    const result = await editCountry(country);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleDeleteCountry = async (id) => {
@@ -91,11 +120,25 @@ const useRegions = () => {
   };
 
   const handleAddCity = async (city) => {
-    await addCity(city);
+    const message = 'Ciudad creada con éxito';
+    const result = await addCity(city);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleEditCity = async (city) => {
-    await editCity(city);
+    const message = 'Ciudad editada con éxito';
+    const result = await editCity(city);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleDeleteCity = async (id) => {

@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
-import { notification } from '../utils/notification';
 import { useGetCitiesQuery, useGetCompaniesQuery } from '../app/api';
 
 const useModalContacts = ({ activeData, handleEditContact, handleAddContact, handleClose }) => {
@@ -18,16 +17,12 @@ const useModalContacts = ({ activeData, handleEditContact, handleAddContact, han
   } = useForm({ defaultValues: { ...activeData } });
 
   const onSubmit = (data) => {
-    let message;
     if (activeData.id) {
       handleEditContact(data);
-      message = 'Contacto editado con éxito';
     } else {
       handleAddContact(data);
-      message = 'Contacto creado con éxito';
     }
     handleClose();
-    notification('success', message);
   };
 
   return {

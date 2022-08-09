@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAddContactMutation, useDeteleContactMutation, useEditContactMutation, useGetContactsQuery } from '../app/api';
 
+import { notification } from '../utils/notification';
 import defaultContact from '../constants/defaultContact';
 
 const useContacts = () => {
@@ -23,11 +24,25 @@ const useContacts = () => {
   };
 
   const handleAddContact = async (contact) => {
-    await addContact(contact);
+    const message = 'Contacto creado con éxito';
+    const result = await addContact(contact);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleEditContact = async (contact) => {
-    await editContact(contact);
+    const message = 'Contacto editado con éxito';
+    const result = await editContact(contact);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleDeleteContact = async (id) => {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAddCompanyMutation, useDeteleCompanyMutation, useEditCompanyMutation, useGetCompaniesQuery } from '../app/api';
 
+import { notification } from '../utils/notification';
 import defaultCompany from '../constants/defaultCompany';
 
 const useCompanies = () => {
@@ -22,11 +23,25 @@ const useCompanies = () => {
   };
 
   const handleAddCompany = async (company) => {
-    await addCompany(company);
+    const message = 'Compañía creada con éxito';
+    const result = await addCompany(company);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleEditCompany = async (company) => {
-    await editCompany(company);
+    const message = 'Compañía creada con éxito';
+    const result = await editCompany(company);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleDeleteCompany = async (id) => {

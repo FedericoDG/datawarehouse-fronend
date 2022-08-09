@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAddUserMutation, useDeleteUserMutation, useEditUserMutation, useGetUsersQuery } from '../app/api';
 
+import { notification } from '../utils/notification';
 import defaultUser from '../constants/defaultUser';
 
 const useUsers = () => {
@@ -30,11 +31,25 @@ const useUsers = () => {
   };
 
   const handleAddUser = async (user) => {
-    await addUser(user);
+    const message = 'Usuario creado con éxito';
+    const result = await addUser(user);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleEditUser = async (user) => {
-    await editUser(user);
+    const message = 'Usuario editado con éxito';
+    const result = await editUser(user);
+    if ('error' in result) {
+      console.log(result);
+      notification('error', result.error.data.message);
+    } else {
+      notification('success', message);
+    }
   };
 
   const handleDeleteUser = async (id) => {
