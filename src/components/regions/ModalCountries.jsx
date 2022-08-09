@@ -85,7 +85,7 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
                 sx={{ maxWidth: 460, marginLeft: 'auto' }}
                 variant='standard'
                 {...register('id_region', {
-                  required: 'La región obligatorio'
+                  required: 'La región obligatoria'
                 })}
                 error={!!errors.id_region}
                 helperText={errors.id_region?.message}

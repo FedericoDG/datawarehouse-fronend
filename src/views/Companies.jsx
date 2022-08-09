@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import ButtonGroup from '../components/ui/ButtonGroup';
 import Error from '../components/ui/Error';
 import Layout from '../components/ui/Layout';
-import Loader from '../components/contacts/Loader';
+import Loader from '../components/companies/Loader';
 import ModalCompanies from '../components/companies/Modal';
 import Table from '../components/companies/Table';
 import useCompanies from '../hooks/useCompanies';

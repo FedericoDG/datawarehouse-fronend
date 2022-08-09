@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 const Layout = ({ children }) => (
   <>
     <Navbar />
-    <Container sx={{ paddingTop: 1 }} maxWidth='xl'>
+    <Container sx={{ paddingTop: 10 }} maxWidth='xl'>
       {children}
     </Container>
     <Footer />

@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 
 import './LoginBanner.css';
 
-import Banner from '../../assets/bg-login.webp';
+import Banner from '../../assets/bg-login.png';
 
 const LoginBanner = () => (
   <Box

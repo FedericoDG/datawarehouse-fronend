@@ -11,7 +11,15 @@ const Footer = () => {
   `;
 
   return (
-    <Box bottom={0} component='footer' my={2} position='fixed' width='100%' sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box
+      bottom={0}
+      component='footer'
+      py={2}
+      position='fixed'
+      width='100%'
+      sx={{ display: 'flex', justifyContent: 'center' }}
+      bgcolor='background.paper'
+    >
       <Typography align='center' variant='body2' fontWeight={300}>
         ¿Quieres saludarme?
       </Typography>

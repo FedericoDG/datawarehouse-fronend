@@ -67,6 +67,9 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
             {params.row.lastname}, {params.row.name}
           </span>
           <span style={{ fontWeight: 300 }}>{params.row.email}</span>
+          <span style={{ fontWeight: 300 }}>
+            ({params.row.city_name} - {params.row.country_name})
+          </span>
         </div>
       )
     },
@@ -184,15 +187,16 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
   ];
 
   return (
-    <div style={{ height: 527, width: '100%' }}>
+    <div style={{ height: 525, width: '100%' }}>
       <StyledDataGrid
         columns={columns}
         disableSelectionOnClick
         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-        pageSize={8}
+        pageSize={6}
         rows={rows}
-        rowsPerPageOptions={[8]}
+        rowsPerPageOptions={[6]}
         sx={{ fontFamily: 'Roboto Mono, monospace' }}
+        getRowHeight={() => 69}
       />
     </div>
   );

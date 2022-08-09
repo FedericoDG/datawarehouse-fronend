@@ -73,7 +73,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position='static'>
+    <AppBar position='fixed'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <MapsHomeWorkIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

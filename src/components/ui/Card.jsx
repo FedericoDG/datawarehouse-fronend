@@ -3,17 +3,24 @@ import { Grid, Paper, Stack } from '@mui/material';
 import { useConfirm } from 'material-ui-confirm';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import PublicIcon from '@mui/icons-material/Public';
+import EmojiFlagsIcon from '@mui/icons-material/EmojiFlags';
+import PlaceIcon from '@mui/icons-material/Place';
+import { deepPurple, pink, teal, grey } from '@mui/material/colors';
 
 import { notification } from '../../utils/notification';
 
-import cityImg from '../../assets/city.svg';
-import countryImg from '../../assets/country.svg';
-import regionImg from '../../assets/region.svg';
+export const Icon = ({ type }) => {
+  const styleR = { fontWeight: 500, fontSize: '4rem', color: deepPurple[300] };
+  const styleCo = { fontWeight: 500, fontSize: '4rem', color: pink[300] };
+  const styleCi = { fontWeight: 500, fontSize: '4rem', color: teal[300] };
+  if (type === 'region') return <PublicIcon style={styleR} />;
+  if (type === 'country') return <EmojiFlagsIcon style={styleCo} />;
+  if (type === 'city') return <PlaceIcon style={styleCi} />;
+};
 
 const MuiCard = ({ title, subtitle, type, data, handleOpen, handleDelete }) => {
   const confirm = useConfirm();
-
-  const image = type === 'region' ? regionImg : type === 'country' ? countryImg : cityImg;
 
   const titleConfirm =
     type === 'region'
@@ -52,16 +59,19 @@ const MuiCard = ({ title, subtitle, type, data, handleOpen, handleDelete }) => {
         flexDirection: 'column',
         justifyContent: 'space-between',
         marginBottom: 1,
-        background: `url(${image})`
+        backgroundColor: grey[200]
       }}
       component='div'
-      elevation={2}
+      elevation={1}
     >
-      <Stack>
-        <Typography variant='button' color='text.secondary' gutterBottom>
-          {title}
-        </Typography>
-        {subtitle && <Typography variant='body2'>{`(${subtitle})`}</Typography>}
+      <Stack direction='row' justifyContent='space-between'>
+        <div>
+          <Typography variant='button' color='text.secondary' gutterBottom>
+            {title}
+          </Typography>
+          {subtitle && <Typography variant='body2'>{`(${subtitle})`}</Typography>}
+        </div>
+        <Icon type={type} />
       </Stack>
       <Grid container justifyContent='flex-end'>
         <Button size='small' onClick={handleOpen}>

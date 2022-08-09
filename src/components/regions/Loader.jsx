@@ -11,7 +11,7 @@ const Loader = ({ height, title, noButton }) => (
         <>
           <Grid item />
           <Grid item>
-            <ButtonGroup title={title} csv={false} />
+            <ButtonGroup title={title} />
           </Grid>
         </>
       )}
