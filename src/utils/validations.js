@@ -28,6 +28,6 @@ export const isPassword = (password) => {
   return isValidPassword(password) ? undefined : 'Mín. 8 caracteres, 1 mayúscula, 1 minúscula y 1 caracter especial';
 };
 
-export const isName = (password) => {
-  return isValidName(password) ? undefined : 'Mín. 3 caracteres. No se permiten números ni caracteres especiales';
+export const isName = (name) => {
+  return isValidName(name) ? undefined : 'Mín. 3 caracteres. No se permiten números ni caracteres especiales';
 };
