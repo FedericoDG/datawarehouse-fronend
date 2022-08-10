@@ -23,6 +23,12 @@ Utiliza **RTK Query** para el manejo del _data fetching_ y _caching_, **React Ho
   git clone https://github.com/FedericoDG/datawarehouse-frontend
 ```
 
+- Acceder a la carpeta del proyecto:
+
+```bash
+  cd datawarehouse-frontend
+```
+
 - Instalar las dependencias del proyecto:
 
 ```bash
