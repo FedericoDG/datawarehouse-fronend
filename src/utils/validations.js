@@ -14,12 +14,20 @@ export const isValidPassword = (password) => {
   return !!match;
 };
 
+export const isValidName = (password) => {
+  const match = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]{3,50}$/;
+
+  return !!match;
+};
+
 export const isEmail = (email) => {
-  return isValidEmail(email) ? undefined : 'El correo no parece ser válido';
+  return isValidEmail(email) ? undefined : 'No es un email válido';
 };
 
 export const isPassword = (password) => {
-  return isValidPassword(password)
-    ? undefined
-    : 'La contraseña de tener un mínimo 8 caracteres, e incluir al menos una letra en mayúscula y un caracter especial';
+  return isValidPassword(password) ? undefined : 'Mín. 8 caracteres, 1 mayúscula, 1 minúscula y 1 caracter especial';
+};
+
+export const isName = (password) => {
+  return isValidPassword(password) ? undefined : 'Mín. 3 caracteres. No se permiten números ni caracteres especiales';
 };

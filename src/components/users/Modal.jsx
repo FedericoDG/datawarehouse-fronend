@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 
-import { isEmail, isPassword } from '../../utils/validations';
+import { isEmail, isName, isPassword } from '../../utils/validations';
 import Spinner from '../ui/Spinner';
 import useModalUsers from '../../hooks/useModalUsers';
 
@@ -108,7 +108,8 @@ const ModalUsers = ({ activeData, open, handleClose, handleEditUser, handleAddUs
                 variant='filled'
                 size='small'
                 {...register('lastname', {
-                  required: 'El Nombre es obligatorio'
+                  required: 'El apellido es obligatorio',
+                  validate: isName
                 })}
                 error={!!errors.lastname}
                 helperText={errors.lastname?.message}
@@ -121,7 +122,8 @@ const ModalUsers = ({ activeData, open, handleClose, handleEditUser, handleAddUs
                 variant='filled'
                 size='small'
                 {...register('name', {
-                  required: 'El Nombre es obligatorio'
+                  required: 'El nombre es obligatorio',
+                  validate: isName
                 })}
                 error={!!errors.name}
                 helperText={errors.name?.message}

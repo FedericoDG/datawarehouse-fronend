@@ -1,6 +1,6 @@
 import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
 
-import { isEmail } from '../../utils/validations';
+import { isEmail, isName } from '../../utils/validations';
 import preferences from '../../constants/preferencesArray';
 import Spinner from '../ui/Spinner';
 import useModalContacts from '../../hooks/useModalContacts';
@@ -120,6 +120,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
                 variant='filled'
                 {...register('lastname', {
                   required: 'El apellido es obligatorio',
+                  validate: isName,
                   onChange: (e) => {
                     setLastname(e.target.value.at(0));
                   }
@@ -136,6 +137,7 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
                 onChange={(e) => setName(e.target.value.at(0))}
                 {...register('name', {
                   required: 'El nombre es obligatorio',
+                  validate: isName,
                   onChange: (e) => {
                     setName(e.target.value.at(0));
                   }
