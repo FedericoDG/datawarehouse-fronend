@@ -6,8 +6,9 @@ import ModalCountries from '../components/regions/ModalCountries';
 import ModalRegions from '../components/regions/ModalRegions';
 import useRegions from '../hooks/useRegions';
 
-import './styles.css';
 import CardContainer from '../components/regions/CardContainer';
+
+import './styles.css';
 
 const Regions = () => {
   const {
