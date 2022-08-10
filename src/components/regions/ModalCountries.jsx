@@ -1,5 +1,5 @@
 import { Backdrop, Box, Button, Fade, Grid, MenuItem, Modal, Paper, Stack, TextField, Typography } from '@mui/material';
-import FlagIcon from '@mui/icons-material/Flag';
+import EmojiFlagsIcon from '@mui/icons-material/EmojiFlags';
 
 import useModalCountries from '../../hooks/useModalCountries';
 
@@ -59,7 +59,7 @@ const ModalCountries = ({ activeData, open, handleClose, handleEditCountry, hand
                   zIndex: 99
                 }}
               >
-                <FlagIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
+                <EmojiFlagsIcon style={{ fontWeight: 500, color: 'white', fontSize: '4rem' }} />
               </Box>
               <TextField
                 autoFocus
