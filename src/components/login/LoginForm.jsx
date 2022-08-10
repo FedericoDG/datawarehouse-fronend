@@ -38,14 +38,17 @@ const LoginForm = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography align='center' color='initial' fontWeight='light' variant='h6'>
-            Intenta con:
+          <Typography align='center' color='initial' variant='h6'>
+            Intenta con ingresar con:
           </Typography>
-          <Typography align='center' color='initial' fontWeight={500} variant='body2'>
+          <Typography align='center' color='initial' fontWeight={400} variant='body2' fontFamily='Roboto Mono, monospace'>
             admin@gmail.com - Password1234!
           </Typography>
-          <Typography align='center' color='initial' fontWeight={500} variant='body2'>
+          <Typography align='center' color='initial' fontWeight={400} variant='body2' ontFamily='Roboto Mono, monospace'>
             user@gmail.com - Password1234!
+          </Typography>
+          <Typography align='center' color='error' fontWeight={300} variant='body2' ontFamily='Roboto Mono, monospace'>
+            La base de datos se reinicia cada hora
           </Typography>
         </Grid>
         <Grid item xs={12} component='form' onSubmit={handleSubmit(onLogin)}>
