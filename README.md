@@ -47,7 +47,6 @@ Utiliza **RTK Query** para el manejo del _data fetching_ y _caching_, **React Ho
 
 ![My Remote Image](https://nazgul.com.ar/images/one.gif)
 ![My Remote Image](https://nazgul.com.ar/images/two.gif)
-![My Remote Image](https://nazgul.com.ar/images/three.gif)
 ![My Remote Image](https://nazgul.com.ar/images/four.gif)
 
 ## Tecnologías
