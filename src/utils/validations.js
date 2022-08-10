@@ -29,5 +29,5 @@ export const isPassword = (password) => {
 };
 
 export const isName = (password) => {
-  return isValidPassword(password) ? undefined : 'Mín. 3 caracteres. No se permiten números ni caracteres especiales';
+  return isValidName(password) ? undefined : 'Mín. 3 caracteres. No se permiten números ni caracteres especiales';
 };
