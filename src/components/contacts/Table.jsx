@@ -190,6 +190,7 @@ const Table = ({ handleDeleteContact, handleOpen, rows, setActiveData }) => {
     <div style={{ height: 525, width: '100%' }}>
       <StyledDataGrid
         columns={columns}
+        disableColumnMenu
         disableSelectionOnClick
         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
         pageSize={6}
