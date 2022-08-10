@@ -7,8 +7,7 @@ const Login = () => (
   <Grid container>
     <Grid
       item
-      lg={3}
-      md={4}
+      lg={4}
       sx={{
         alignItems: 'center',
         display: 'flex',
@@ -21,7 +20,7 @@ const Login = () => (
     >
       <LoginForm />
     </Grid>
-    <Grid item display={{ xs: 'none', md: 'block' }} lg={9} md={8}>
+    <Grid item display={{ xs: 'none', md: 'block' }} lg={8} xs={12}>
       <LoginBanner />
     </Grid>
   </Grid>

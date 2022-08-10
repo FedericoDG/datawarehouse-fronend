@@ -44,10 +44,10 @@ const LoginForm = () => {
           <Typography align='center' color='initial' fontWeight={400} variant='body2' fontFamily='Roboto Mono, monospace'>
             admin@gmail.com - Password1234!
           </Typography>
-          <Typography align='center' color='initial' fontWeight={400} variant='body2' ontFamily='Roboto Mono, monospace'>
+          <Typography align='center' color='initial' fontWeight={400} variant='body2' fontFamily='Roboto Mono, monospace'>
             user@gmail.com - Password1234!
           </Typography>
-          <Typography align='center' color='error' fontWeight={300} variant='body2' ontFamily='Roboto Mono, monospace'>
+          <Typography align='center' color='error' fontWeight={300} variant='body2' fontFamily='Roboto Mono, monospace'>
             La base de datos se reinicia cada hora
           </Typography>
         </Grid>
