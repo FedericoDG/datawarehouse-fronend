@@ -160,6 +160,17 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
             </Stack>
             <Stack p={1} spacing={1} direction='row'>
               <TextField
+                fullWidth
+                inputProps={{ tabIndex: '7' }}
+                label='Dirección'
+                variant='standard'
+                {...register('address', {
+                  required: 'La dirección es obligatoria'
+                })}
+                error={!!errors.address}
+                helperText={errors.address?.message}
+              />
+              <TextField
                 defaultValue={activeData.id_city}
                 fullWidth
                 inputProps={{ tabIndex: '4' }}
@@ -207,17 +218,6 @@ const ModalContacts = ({ activeData, open, handleClose, handleEditContact, handl
                 })}
                 error={!!errors.position}
                 helperText={errors.position?.message}
-              />
-              <TextField
-                fullWidth
-                inputProps={{ tabIndex: '7' }}
-                label='Dirección'
-                variant='standard'
-                {...register('address', {
-                  required: 'La dirección es obligatoria'
-                })}
-                error={!!errors.address}
-                helperText={errors.address?.message}
               />
               <Box sx={{ minWidth: 238 }}>
                 <Typography gutterBottom textAlign='center'>
